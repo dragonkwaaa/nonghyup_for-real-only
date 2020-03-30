@@ -1,0 +1,179 @@
+
+$(document).ready(function(){
+	get_cart();
+});
+
+
+function movePage(pno){
+	pno						=	pno			?	pno		:	1;
+	$('input[name="pno"]').val(pno);
+	get_cart();
+}
+
+function get_cart(){
+	$('.goodsList').html('');
+
+	let pno 				=	$('input[name="pno"]').val();
+	let token 				=	$('input[name="token"]').val();
+	let isRegular 			=	$('input[name="isRegular"]').val();
+
+	let url					=	'/my/event/cart_get_cart';
+	let dataType			=	'json';
+	let param				= 	{
+		pno					:	pno,
+		token				:	token,
+		isRegular 			:	isRegular
+	};
+
+	postService(url, dataType, param, function(data){
+
+		let list			=	data.list;
+		let totalCount		=	data.totalCount;
+		let recordPerPage	=	data.recordPerPage;
+		let pnoPerPage		=	data.pnoPerPage;
+		let temp 			=	data.temp;
+		let str				=	'';
+		let userRegular 	=	data.userRegular;
+		let totalPrice 		=	0;
+
+		if(userRegular != 1){
+			$('#regularCart').hide();
+		}
+
+		if(list.length){
+			$.each(list, function(index, cart) {
+				let opData 	=	'기본';
+				if(cart.productOpIdx > 0){
+					opData 	=	cart.productOpInfo+' ('+numberWithCommas(cart.productOpPrice)+'원)'
+				}
+
+			str			+=		'<li>';
+			str			+=		'	<div class="segmentHeadLine f12">'+cart.productName+'</div>';
+			str			+=		'	<div class="segmentTop">';
+			str			+=		'		<label>';
+			str			+=		'			<input type="checkbox" name="cartCode[]" value="'+cart.cartCode+'" checked onchange="calculation();">';
+			str 		+=		'			<input type="hidden" name="type[]" value="'+cart.productType+'">';
+			str 		+=		'			<input type="hidden" name="code[]" value="'+cart.productCode+'">';
+			str			+=		'			<span class="f_w14m30">'+opData+'</span>';
+			str			+=		'		</label>';
+			str			+=		'		<a href="javascript:delete_cart('+cart.cartCode+');" class="deleteBtn absoluteR"></a>';
+			str			+=		'	</div>';
+			str			+=		'	<div class="mainCon imgGoods">';
+			str			+=		'		<img src="http://nonghyup.heeyam.com'+cart.productImg+'" class="goodsImg separatedLeft"></img>';
+			str			+=		'		<div class="goodsInfo separatedRight">';
+		/*	str			+=		'			<div class="f16 f_semiBold">'+cart.productName+'</div>';*/
+			str			+=		'			<div class="f20 f_semiBold mt8">';
+			str			+=		'				<span>'+numberWithCommas(cart.productPrice)+'원</span>';
+			str			+=		'				<span class="f14">(1개)</span>';
+			str			+=		'			</div>';
+			str			+=		'		</div>';
+			str			+=		'		<a href="javascript:void(0);" class="changeOptionBtn mt12 plainBtn">옵션/수량</a>';
+			str			+=		'	</div>';
+
+
+
+			str			+=		'	<div class="calculationCon cartCalc">';
+			str			+=		'		<div>';
+			str			+=		'			<div>';
+			str			+=		'				<span class="f13">상품금액</span>';
+			str			+=		'				<span class="floatR f_bold f13">'+numberWithCommas(cart.productPrice)+'원</span>';
+			str			+=		'			</div>';
+			str			+=		'			<div class="mt20">';
+			str			+=		'				<span class="f13">배송비</span>';
+			str			+=		'				<span class="floatR f13">무료</spa>';
+			str			+=		'			</div>';
+			str			+=		'			<div class="mt20">';
+			str			+=		'				<span class="lh20 f13">주문금액</span>';
+			str			+=		'				<span class="floatR f_bold f20">'+numberWithCommas(cart.productPrice)+'원</span>';
+				str			+=		'			<input type="hidden" name="qty[]" value="'+cart.cartQty+'" id="qty'+cart.cartCode+'">';
+			str			+=		'			<input type="hidden" name="price[]" value="'+cart.productPrice+'" id="price'+cart.cartCode+'">';
+			str			+=		'			<input type="hidden" name="discount[]" value="'+cart.perDiscount+'" id="discount'+cart.cartCode+'">';
+			str			+=		'			</div>';
+			str			+=		'		</div>';
+			str			+=		'	</div>';
+			str			+=		'</li>';
+
+			totalPrice	+=		parseInt(cart.productPrice * cart.cartQty);
+			});
+		} else {
+			str			+=		'<div class="emptyItemDisplay tAlignC">';
+			str			+=		'	<i class="emptyCartIcon"></i>';
+			str			+=		'	<div class="mt40 f24">장바구니에 담긴 상품이 없습니다.</div>';
+			str			+=		'	<a href="/" class="rimlessBtn">쇼핑하러 가기</a>';
+			str			+=		'</div>';
+		}
+
+		$('.goodsList').html(str);
+		$('#totalPrice').html(numberWithCommas(totalPrice)+'원');
+		$('#orderPrice').html(numberWithCommas(totalPrice)+'원');
+		$('#discountPrice').html(numberWithCommas(discountPrice)+'원');
+		setPaging(recordPerPage, pnoPerPage, pno, totalCount);
+		calculation();
+	});
+}
+
+function calculation(){
+	var perCode 						=	0;
+	var perPrice 						=	0;
+	var totalPrice 						=	0;
+	var perDiscount 					=	0;
+	var totalDiscount 					=	0;
+	var i 								=	0;
+
+	$('input:checkbox[name="cartCode[]"]').each(function() {
+		if(this.checked){
+			perCode 					=	this.value;
+			perPrice	 				=	parseInt($('#price'+perCode).val());
+			perQty	 					=	parseInt($('#qty'+perCode).val());
+			totalPrice 					+=	perPrice * perQty;
+
+			perDiscount	 				=	parseInt($('#discount'+perCode).val());
+			totalDiscount 				+=	perDiscount * perQty;
+			i++;
+		}
+	});
+
+	$('#cartNum').html('(상품'+i+'개)');
+	$('#totalPrice').html(numberWithCommas(totalPrice));
+	$('#orderPrice').html(numberWithCommas(totalPrice));
+	$('#discountPrice').html(numberWithCommas(totalDiscount));
+}
+
+function codeCheckAll(){
+	if ($('input:checkbox[name="checkAll"]').is(":checked") == true) {
+		$("input[name='cartCode[]']").prop("checked", true);
+	} else {
+		$("input[name='cartCode[]']").prop("checked", false);
+	}
+	calculation();
+}
+
+function delete_cart(cartCode){
+	let url 					=	'/my/event/cart_update_cart';
+	let dataType 				=	'json';
+	let param 					=	{
+		cartCode				:	cartCode,
+		procType 				:	4,
+		isRegular				:	$('input[name="isRegular"]').val(),
+	}
+	postService(url, dataType, param, '', '');
+}
+
+function set_order(){
+	let cartCode 				=	[]
+	$('input:checkbox[name="cartCode[]"]').each(function() {
+		if(this.checked){								//checked 처리된 항목의 값
+			cartCode.push(this.value);
+		}
+	});
+
+	let form				=   document.querySelector("#frm");
+	let postData			=   new FormData(form);
+
+	let url					=	'/order/event/orderReg_before_order';
+	let dataType			=	'json';
+	let param				= 	postData;
+	let formType			=	1;
+	postService(url, dataType, param, '', formType);
+
+}
