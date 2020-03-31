@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/head.php';
+if(!$User->userCode()){
+	$CommonManager->goPage('/intro/login', '로그인 후, 사용가능합니다.');
+}
+?>
+
+<body>
+<div class="container">
+
+	<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/header.php';?> 
+
+	<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/topMenu.php';?> 
+
+	<!-- :: 컨텐츠  파트 -->
+	<div class="contents">
+
+		<!-- :: 플로팅 내용 파트 -->
+		<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/rightFloat.php';?> 
+
+		<!-- :: 주요 내용 섹션 -->
+		<div class="section userRegSect inquiryPageMod">
+			<form name="frm" id="frm" onkeypress="if(event.keyCode==13) {document.frm.submit(); return false;}">
+				<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+			<div class="mainTitle">1:1 문의하기</div>
+			<div class="listGroup">
+				<ul class="regInfoList">
+					<li class="infoGroup">
+						<div class="mainCon">
+							<table class="infoRegTable">
+								<tbody>
+								<tr>
+									<td>
+										<input class="tbox full" placeholder="제목을 입력해주세요." value="" name="subject">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<textarea placeholder="내용을 입력해주세요." class="tArea inquiryWrite" name="contents" id="contents"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td class="fontReset">
+
+
+										<!-- :: 이미지 5개 업로드 파트 -->
+										<?php for($i = 1 ; $i <= 5 ; $i ++){ ?>
+										<div class="imgUploadBox">
+											<input type="file" class="hide" accept="image/*" name="img_<?= $i?>" onchange="img_sel(this, event)">
+											<a href="javascript:void(0)" class="upload_btn" onclick="img_upload(this)"></a>
+										</div>
+										<?php } ?>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</li>
+					<li>
+						<!-- :: 버튼 파트 -->
+						<div class="btnGroup">
+							<a href="javascript:void(0);" class="plainBtn cancelBtn">취소</a>
+							<a href="javascript:insert_inquiry();" class="rimlessBtn regBtn">등록</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			</form>
+		</div>
+	</div>
+	<!-- :: 푸터 파트 -->
+	<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/footer.php';?> 
+
+</div>
+
+<!-- :: 이미지 업로드 관련 스크립트 -->
+<script src="/common/js/exif-js.js"></script>
+<script src="/common/js/imgSet.js"></script>
+
+
+<script src="/board/js/inquiryWrite.js"></script>
+<script>
+
+// :: 셀렉트박스 스크립트(공용)
+$(document).on('click', '.sbox a', function(){
+	$(this).siblings('ul').slideToggle();
+})
+
+
+</script>
+</body>
+</html>
