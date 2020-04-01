@@ -1,0 +1,233 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/head.php';
+$code 					=	$SubFunction->allTags($_GET['code']);
+$pCode 					=	$SubFunction->allTags($_GET['pCode']);
+$type 					=	$SubFunction->allTags($_GET['type'])		?	$SubFunction->allTags($_GET['type'])	:	1;
+if(!$code || !$pCode){
+	$CommonManager->goBack('잘못된 접근입니다.');
+}
+$mCode					=	'03';
+$type 					=	$SubFunction->allTags($_GET['type'])	?	$SubFunction->allTags($_GET['type'])	:	1;
+$lCode 					=	$mCode.'0'.$type;
+$tempUrl 				=	'/manager/order?type='.$type;
+?>
+<body>
+
+<div class="container">
+	<!-- gnb -->
+	<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/header.php'; ?>
+
+
+	<div class="wrapper">
+		<!-- lnb -->
+		<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/order/pages/order_left.php'; ?>
+
+		<div class="contents">
+			<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+			<input type="hidden" name="orderCode" value="<?= $code?>">
+			<input type="hidden" name="orderListCode" value="<?= $pCode?>">
+			<!-- :: 기본 정보 파트 -->
+			<div class="set_field">
+				<div class="field_title">
+					<span class="title_mark">■</span>
+					<span>주문자 정보</span>
+				</div>
+				<table class="set_table">
+					<colgroup>
+						<col width="200">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>
+							<span>이름</span>
+						</th>
+						<td id="ordererName"></td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td id="ordererMobile">
+							부산 강서구 르노삼성대로 14
+						</td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td id="ordererEmail">
+							포장 꼼꼼히 해 주세요.
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="set_field">
+				<div class="field_title">
+					<span class="title_mark">■</span>
+					<span>배송지 정보</span>
+				</div>
+				<table class="set_table">
+					<colgroup>
+						<col width="200">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>
+							<span>수령인</span>
+						</th>
+						<td id="receiveName"></td>
+					</tr>
+					<tr>
+						<th>연락처</th>
+						<td id="receiveMobile">
+						</td>
+					</tr>
+					<tr>
+						<th>배송주소</th>
+						<td id="receiveAddr">
+						</td>
+					</tr>
+					<tr>
+						<th>배송메세지</th>
+						<td id="deliveryMsg">
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="set_field">
+				<div class="field_title">
+					<span class="title_mark">■</span>
+					<span>주문상품정보</span>
+				</div>
+				<table class="set_table">
+					<colgroup>
+						<col width="200">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>주문상품</th>
+						<td>
+							<table class="set_table innerTable">
+								<colgroup>
+									<col width="14%">
+									<col width="18%">
+									<col width="15%">
+									<col width="14%">
+									<col width="11%">
+									<col width="15%">
+									<col width="18%">
+								</colgroup>
+								<thead>
+								<th>이미지</th>
+								<th>상품명</th>
+								<th>가격</th>
+								<th>기본옵션</th>
+								<th>주문수량</th>
+								<th>주문상태</th>
+								<th>상태값 변경</th>
+								</thead>
+								<tbody id="orderList">
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>총 상품 가격</th>
+						<td id="orgAmount"></td>
+					</tr>
+					<tr>
+						<th>배송비</th>
+						<td id="deliveryPrice">0 원</td>
+					</tr>
+					<tr>
+						<th>총 결제 금액</th>
+						<td id="amount">2,400 원</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="set_field" id="regularDiv">
+				<div class="field_title">
+					<span class="title_mark">■</span>
+					<span>정기배송 결제정보</span>
+				</div>
+				<table class="set_table">
+					<colgroup>
+						<col width="200">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>
+							<span>정기배송 회원해당</span>
+						</th>
+						<td id="isRegularMember"></td>
+					</tr>
+					<tr>
+						<th>
+							<span>정기배송 기간</span>
+						</th>
+						<td id="regularTerm"></td>
+					</tr>
+					<tr>
+						<th>
+							<span>은행명</span>
+						</th>
+						<td id="bankName"></td>
+					</tr>
+					<tr>
+						<th>계좌번호</th>
+						<td id="bankAccountNum">
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="set_field" id="notRegularDiv">
+				<div class="field_title">
+					<span class="title_mark">■</span>
+					<span>결제정보</span>
+				</div>
+				<table class="set_table">
+					<colgroup>
+						<col width="200">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>결제유형</th>
+						<td id="payMethod">
+							카드결제
+						</td>
+					</tr>
+					<!--<tr>
+						<th>결제상세정보</th>
+						<td id="cardName">
+							국민카드
+						</td>
+					</tr>
+					<tr>
+						<th>결제금액</th>
+						<td id="pgAmount">
+							21,000 원
+						</td>
+					</tr>
+					<tr>
+						<th>결제승인일시</th>
+						<td id="authDate">
+							2020.02.05 18:02:30
+						</td>
+					</tr>-->
+					</tbody>
+				</table>
+			</div>
+			<div class="btn_group" id="buttonSel">
+			<!--	<a href="javascript:updateState();" class="btn col_darkGrey" id="stateStr">배달완료</a>-->
+				<a href="<?= $tempUrl?>" class="ml15 btn col_main">확인</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/manager/order/js/orderSpec.js"></script>
+</body>
+</html>
