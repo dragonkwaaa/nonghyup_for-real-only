@@ -1,0 +1,100 @@
+$(document).ready(function(){
+	get_order();
+});
+
+
+
+function get_order(){
+	$('#orderList').html('');
+
+	let orderCode			=	$('input[name="orderCode"]').val();
+	let orderListCode		=	$('input[name="orderListCode"]').val();
+	let url					=	'/manager/order/event/orderSpec_get_order';
+	let dataType			=	'json';
+	let param				= 	{
+		orderCode			:	orderCode,
+		orderListCode 		:	orderListCode
+	};
+
+	postService(url, dataType, param, function(data){
+		let order			=	data.order;
+		let orderList		=	data.orderList;
+		let regularInfo 	=	data.regularInfo;
+
+		$('#ordererName').html(order.ordererName);
+		$('#ordererMobile').html(phone_format(order.ordererMobile));
+		$('#ordererEmail').html(order.ordererEmail);
+
+		$('#receiveName').html(order.receiveName);
+		$('#receiveMobile').html(phone_format(order.receiveMobile));
+		$('#receiveAddr').html(order.receiveAddr+' '+order.receiveAddrDetail+' ('+order.receiveZip+')');
+		$('#deliveryMsg').html(order.deliveryMsg);
+
+		let str 			=	'';
+		if(orderList.length){
+			for(var i = 0 ; i < orderList.length ; i ++){
+				var ol 			=	orderList[i];
+				str				+=	'<tr>';
+				str				+=	'	<td>';
+				str				+=	'		<img src="'+ol.productImg+'" style="width : 100%;">';
+				str				+=	'	</td>';
+				str				+=	'	<td>'+ol.productName+'</td>';
+				str				+=	'	<td>'+numberWithCommas(ol.productPrice)+' 원</td>';
+				if(ol.productOpIdx > 0){
+					str				+=	'	<td>'+ol.productOpName+'/'+ol.productOpInfo+'(+'+numberWithCommas(ol.productOpPrice)+'원)</td>';
+				} else {
+					str				+=	'	<td>기본</td>';
+				}
+				str				+=	'	<td>'+ol.productQty+'</td>';
+				str				+=	'	<td>'+ol.orderStateStr+'</td>';
+				str				+=	'	<td>';
+
+				str				+=	'		<a href="javascript:void(0);" class="btn small col_main f_w">';
+				str				+=	'			상태값변경';
+				str				+=	'		</a>';
+
+				str				+=	'	</td>';
+				str				+=	'	</tr>';
+			}
+
+			$('#orgAmount').html(numberWithCommas(order.orgAmount)+' 원');
+			$('#amount').html(numberWithCommas(order.amount)+' 원');
+
+			if(order.isRegular == 1){
+				$('#regularDiv').show();
+				$('#notRegularDiv').hide();
+				let regularStr 	=	'사용중단';
+				if(regularInfo.isRegularMember == 1){
+					regularStr 	=	'사용중';
+				}
+				$('#isRegularMember').html(regularStr);
+				$('#regularTerm').html('시작일 : '+regularInfo.startDate+' ('+regularInfo.monthPeriod+'개월)');
+				$('#bankName').html(regularInfo.bankName);
+				$('#bankAccountNum').html(regularInfo.bankAccountNum);
+			} else {
+				$('#notRegularDiv').show();
+				$('#regularDiv').hide();
+				$('#payMethod').html(order.payMethodStr);
+				// PG 붙힌 후 작업 예정 결제에 대한 정보
+			}
+
+			$('#orderList').html(str);
+		}
+	});
+}
+
+function updateState(){
+	var orderCode 			=	$('input[name="orderCode"]').val();
+	let token				=	$('input[name="token"]').val();
+
+	let url 				=	'/manager/order/event/orderSpec_update_orderState';
+	let dataType			=	'json';
+	let param				= 	{
+		token					:	token,
+		orderCode 				:	orderCode
+	};
+
+	if(confirm('주문상태를 바꾸시겠습니까?')){
+		postService(url, dataType, param, '', '');
+	}
+}
