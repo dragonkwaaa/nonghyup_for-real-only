@@ -95,19 +95,38 @@ function moveTopFunction() {
 
 
 // :: 웹 화면 우측 졸졸이 따라다니는 기능 스크립트.
+// $(document).ready(function() {
+// 	var floatPosition = parseInt($(".rightFloat.webRightFloat").css('top'));
+// 	$(window).scroll(function() {
+// 		var forRightScrollTop = $(window).scrollTop();
+// 		var ForRightNewPosition = forRightScrollTop + floatPosition + "px";
+// 		$(".rightFloat.webRightFloat").stop().animate({
+// 			"top" : ForRightNewPosition
+// 		}, 500);
+// 	}).scroll();
+	
+// });
+
+
+
+
 $(document).ready(function() {
+
+	// :: 우측 졸졸이의 위치(top)값을 가져와 저장함. 숫자값만. <<이 let 값은 아래에 있는 "$(window).scroll(function()" 구문 내부로 들어가면 안됨.>>
+	let floatPosition = parseInt($(".rightFloat.webRightFloat").css('top'));
+
 	$(window).scroll(function() {
-		// :: 우측 졸졸이의 위치(top)값을 가져와 저장함. 숫자값만.
-		var floatPosition = parseInt($(".rightFloat.webRightFloat").css('top'));
+	
 		// :: 현재 화면 스크롤 위치값 가져옴.
-		var forRightScrollTop = $(window).scrollTop();
+		let forRightScrollTop = $(window).scrollTop();
 		// :: top 값으로 지정할 졸졸이의 높이. 
-		var forRightNewPosition = forRightScrollTop + floatPosition + "px";
+		let forRightNewPosition = forRightScrollTop + floatPosition + "px";
 		// :: 현재 보고 있는 화면의 밑바닥 높이의 값.
-		var forRightScrollBottom = $("body").height() - $(window).height() - $(window).scrollTop();
+		let forRightScrollBottom = $("body").height() - $(window).height() - $(window).scrollTop();
 		// :: 전체 페이지 꼭대기에서부터 푸터까지의 높이값.
-		var forRightLimitFooter = $('footer').position().top;
+		let forRightLimitFooter = $('footer').position().top;
 		// :: [조건] 현재 보고 있는 화면의 높이가 페이지 꼭대기보다 낮을 때.
+		
 		if(forRightScrollTop > 0) {
 			$(".rightFloat.webRightFloat").stop().animate({
 				"top" : forRightNewPosition
