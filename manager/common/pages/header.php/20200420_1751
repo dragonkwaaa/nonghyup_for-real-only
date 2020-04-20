@@ -1,0 +1,37 @@
+<header>
+	<h1 class="logo">
+		<a href="/manager/set/bannerList?type=1" class="logo_btn">
+			<img src="/common/img/logoMain.png" alt="로고">
+		</a>
+	</h1>
+	<div class="nav_menu">
+		<a href="/manager/set/bannerList?type=1" class="menu_btn <?=($mCode == '01' ? 'on' : '')?>">
+			<i class="ico set"></i>
+			<div class="menu_text">환경설정</div>
+		</a>
+		<a href="/manager/product/" class="menu_btn <?=($mCode == '02' ? 'on' : '')?>">
+			<i class="ico order"></i>
+			<div class="menu_text">상품관리</div>
+		</a>
+		<a href="/manager/order/" class="menu_btn <?=($mCode == '03' ? 'on' : '')?>">
+			<i class="ico order"></i>
+			<div class="menu_text">주문관리</div>
+		</a>
+		<a href="/manager/member/" class="menu_btn <?=($mCode == '04' ? 'on' : '')?>">
+			<i class="ico order"></i>
+			<div class="menu_text">회원관리</div>
+		</a>
+		<a href="/manager/board/" class="menu_btn <?=($mCode == '05' ? 'on' : '')?>">
+			<i class="ico order"></i>
+			<div class="menu_text">게시판관리</div>
+		</a>
+	</div>
+	<div class="absoluteMR">
+		<a href="/manager/intro/event/intro_logOut" class="menu_btn logoutSort">
+			<div class="menu_text">로그아웃</div>
+		</a>
+	</div>
+
+
+
+</header>
