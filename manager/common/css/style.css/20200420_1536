@@ -1175,7 +1175,7 @@ ul.selectedCateGroup li.emptyListText {
 
 /* :: 매니저 로그인 페이지 파트 open */
 .loginInputGroup {
-	width : 450px;
+	width : auto;
 	margin : 0 auto;
 	position : fixed;
 	top : 48%;
@@ -1184,10 +1184,12 @@ ul.selectedCateGroup li.emptyListText {
 }
 .loginInputGroup input.loginInfoInput {
 	display : block;
-	width : 450px;
+	width : 430px;
 	height : 60px;
 	line-height : 60px;
 	margin : 0 0 15px 0;
+	padding : 0 10px;
+	font-size : 20px;
 }
 .loginInputGroup .btn_group a.loginBtn {
 	width : 450px;
@@ -1202,5 +1204,12 @@ ul.selectedCateGroup li.emptyListText {
 	height : auto;
 	margin : 0 auto 20px auto;
 	display : block;
+}
+.loginInputGroup label input[type=checkbox] {
+	width : 20px;
+	height : 20px;
+}
+label input[type=checkbox] ~ span {
+	font-size : 20px;
 }
 /* :: 매니저 로그인 페이지 파트 close */
