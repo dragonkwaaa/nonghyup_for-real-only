@@ -96,30 +96,27 @@ function moveTopFunction() {
 
 // :: 웹 화면 우측 졸졸이 따라다니는 기능 스크립트.
 $(document).ready(function() {
-
-	// :: 우측 졸졸이의 위치(top)값을 가져와 저장함. 숫자값만.
-	var floatPosition = parseInt($(".rightFloat.webRightFloat").css('top'));
-	
 	$(window).scroll(function() {
+		// :: 우측 졸졸이의 위치(top)값을 가져와 저장함. 숫자값만.
+		var floatPosition = parseInt($(".rightFloat.webRightFloat").css('top'));
 		// :: 현재 화면 스크롤 위치값 가져옴.
-		var scrollTop = $(window).scrollTop();
+		var forRightScrollTop = $(window).scrollTop();
 		// :: top 값으로 지정할 졸졸이의 높이. 
-		var newPosition = scrollTop + floatPosition + "px";
+		var forRightNewPosition = forRightScrollTop + floatPosition + "px";
 		// :: 현재 보고 있는 화면의 밑바닥 높이의 값.
-		var scrollBottom = $("body").height() - $(window).height() - $(window).scrollTop();
+		var forRightScrollBottom = $("body").height() - $(window).height() - $(window).scrollTop();
 		// :: 전체 페이지 꼭대기에서부터 푸터까지의 높이값.
-		var limitFooter = $('footer').position().top;
-
+		var forRightLimitFooter = $('footer').position().top;
 		// :: [조건] 현재 보고 있는 화면의 높이가 페이지 꼭대기보다 낮을 때.
-		if(scrollTop > 0) {
+		if(forRightScrollTop > 0) {
 			$(".rightFloat.webRightFloat").stop().animate({
-				"top" : newPosition
+				"top" : forRightNewPosition
 			}, 500);
 		}
 		// :: [조건] 현재 보고 있는 화면의 높이가 페이지 밑바닥보다 480픽셀 높을 때.
-		if (scrollBottom < 480) {
+		if (forRightScrollBottom < 480) {
 			$(".rightFloat.webRightFloat").stop().animate({
-				"top" : limitFooter - 900
+				"top" : forRightLimitFooter - 900
 			}, 500);
 		}
 
