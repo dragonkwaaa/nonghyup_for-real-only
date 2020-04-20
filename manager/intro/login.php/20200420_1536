@@ -1,0 +1,28 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/head.php';
+
+?>
+<body>
+
+<div class="container">
+		<div class="contents">
+			<div class="loginInputGroup">
+				<img src="/manager/common/img/logoImg.png" class="logoImg"/>
+				<input class="loginInfoInput"/>
+				<input class="loginInfoInput"/>
+				<div>
+					<label>
+						<input type="checkBox" name="" value="">
+						<span>아이디 저장</span>
+					</label>
+				</div>
+				<div class="btn_group">
+					<a href="/manager/" class="btn col_main loginBtn">로그인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+</script>
+</body>
+</html>
