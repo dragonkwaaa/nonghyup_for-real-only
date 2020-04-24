@@ -1,0 +1,330 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/head.php';
+$mCode					=	'06';
+$lCode 					=	'0601';
+?>
+<body>
+
+<div class="container">
+	<!-- gnb -->
+	<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/header.php'; ?>
+	<div class="wrapper">
+		<!-- lnb -->
+		<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/marketing/pages/marketing_left.php'; ?>
+		<div class="contents">
+			<form name="frm" id="frm" onkeypress="if(event.keyCode==13) {document.frm.submit(); return false;}">
+				<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+				<input type="hidden" name="bbsCate" value="<?= $bbsCate?>">
+				<input type="hidden" name="userID" value="nonghyup">
+				<div class="set_field">
+					<div class="field_title">
+						<span class="title_mark">■ 이벤트 등록</span>
+					</div>
+					<table class="set_table">
+						<colgroup>
+							<col width="120">
+							<col width="*">
+						</colgroup>
+						<tbody>
+
+
+
+						<!-- :: ksg_20200424_1426 open : 이벤트 사용/미사용 체크 라디오박스 파트 -->
+						<tr>
+							<th>
+								<span>이벤트 상태</span>
+							</th>
+							<td>
+								<label class="ml10">
+									<input type="radio" name="eventStatus" value="0">
+									<span>사용</span>
+								</label>
+								<label class="ml10">
+									<input type="radio" name="eventStatus" value="1">
+									<span>미사용</span>
+								</label>	
+							</td>
+						</tr>
+						<!-- :: ksg_20200424_1426 close : 이벤트 사용/미사용 체크 라디오박스 파트 -->
+
+
+						<tr>
+							<th>
+								<span>제목</span>
+							</th>
+							<td>
+								<input class="tbox long" value="" name="subject">
+							</td>
+						</tr>
+						<!--<tr>
+							<th>상품 상세 설명</th>
+							<td>
+								<textarea class="textbox long" name="bundleGoodsInfo" id="bundleGoodsInfo"></textarea>
+							</td>
+						</tr>-->
+						<tr>
+							<th>상품 상세 설명</th>
+							<td>
+								<textarea class="textbox long" name="contents" id="contents"></textarea>
+								<script src="/manager/common/smarteditor2/js/HuskyEZCreator.js"></script>
+								<script>
+									var oEditors	=	[];
+									nhn.husky.EZCreator.createInIFrame({
+										oAppRef: oEditors,
+										elPlaceHolder: "contents",
+										sSkinURI: "/manager/common/smarteditor2/SmartEditor2Skin.html",
+										htParams : {
+											bUseToolbar : true,
+											bUseVerticalResizer : true,
+											bUseModeChanger : true,
+											fOnBeforeUnload : function(){
+											}
+										},
+										fOnAppLoad : function(){
+										},
+										fCreator: "createSEditor2"
+									});
+								</script>
+							</td>
+						</tr>
+					
+
+
+
+						<!-- :: ksg_20200424_1416 open : 달력 선택 박스 파트 -->
+						<tr>
+							<th>
+								<span>기간</span>
+							</th>
+							<td>
+								<input id="startDate" class="tbox" name="startDate" value="" readonly>
+								<span>~</span>
+								<input id="endDate" class="tbox" name="endDate" value="" readonly>
+							</td>
+						</tr>
+						<!-- :: ksg_20200424_1416 close : 달력 선택 박스 파트 -->
+
+
+
+						<!-- :: ksg_20200424_1442 open : 상품 선택 파트  -->
+						<tr>
+							<th>
+								<span>상품목록</span>
+							</th>
+							<td>
+								<a href="javascript:opengAddPopup()" class="selectCateBtn btn normal higher col_main f_w">상품추가</a>
+								
+								
+
+
+
+								<table class="list_table mt10">
+									<colgroup>
+										<col width="40">
+										<col width="180">
+										<col width="100">
+										<col width="80">
+										<col width="80">
+									</colgroup>
+									<thead>
+									<tr>
+										<th>상품이미지</th>
+										<th>상품정보</th>
+										<th>기본금액</th>
+										<th>재고</th>
+										<th>관리</th>
+									</tr>
+									</thead>
+									<tbody id="goodsList">
+									<tr>
+										<td>
+											<div>
+												<img src="/common/img/bundleImg_1.png" alt="상품이미지" class="goods_img">
+											</div>
+										</td>
+										<td>
+											<div class="bold">딸기</div>
+											<div class="bold">딸기 한 상자</div>
+										</td>
+										<td>5,000원</td>
+										<td>96개</td>
+										<td>
+											<a href="javascript:void(0);" class="btn small col_darkGrey f_w">삭제</a>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+
+
+
+							</td>
+						</tr>
+						<!-- :: ksg_20200424_1442 close : 상품 선택 파트  -->
+
+
+
+
+
+						</tbody>
+					</table>
+				</div>
+				<div class="btn_group">
+					<a href="javascript:insert_bbs()" class="btn col_main">등록</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- :: ksg_20200424_1500 open : 상품 추가 팝업 파트 -->
+<div class="popup">
+	<div class="popupTitle">
+		상품추가
+	</div>
+	<div class="popupCon">
+		<table class="set_table">
+			<colgroup>
+				<col width="100">
+				<col width="*">
+			</colgroup>
+			<tbody>
+			<tr>
+				<th>상품검색</th>
+				<td>
+					<input class="tbox searchAuto" name="" value="">
+					<a href="javascript:void(0);" class="btn normal col_main f_w">검색</a>
+					<a href="javascript:void(0);" class="btn normal col_darkGrey f_w">초기화</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+
+
+		<table class="list_table mt10">
+			<colgroup>
+				<col width="80">
+				<col width="180">
+				<col width="100">
+				<col width="80">
+				<col width="80">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>상품이미지</th>
+				<th>상품정보</th>
+				<th>기본금액</th>
+				<th>재고</th>
+				<th>선택</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>
+					<div>
+						<img src="/common/img/bundleImg_1.png" alt="상품이미지" class="goods_img">
+					</div>
+				</td>
+				<td>
+					<div class="bold">딸기</div>
+					<div class="bold">딸기 한 상자</div>
+				</td>
+				<td>5,000원</td>
+				<td>96개</td>
+				<td>
+					<label>
+						<input type="checkbox" name="" value="">
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<img src="/common/img/bundleImg_1.png" alt="상품이미지" class="goods_img">
+					</div>
+				</td>
+				<td>
+					<div class="bold">딸기</div>
+					<div class="bold">딸기 한 상자</div>
+				</td>
+				<td>5,000원</td>
+				<td>96개</td>
+				<td>
+					<label>
+						<input type="checkbox" name="" value="">
+					</label>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<div class="btn_group">
+			<a href="javascript:closePop()" class="btn col_darkGrey">닫기</a>
+			<a href="javascript:void(0)" class="btn col_main ml10">선택</a>
+		</div>
+	</div>
+</div>
+<!-- :: ksg_20200424_1500 close : 상품 추가 팝업 파트 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/manager/common/js/datePick.js"></script>
+<script src="/manager/common/js/exif-js.js"></script>
+<script src="/manager/common/js/exif-js.js"></script>
+<script src="/manager/common/js/imgSet.js"></script>
+<script src="/manager/board/js/info_editor.js"></script>
+<script src="/manager/common/smarteditor2/js/HuskyEZCreator.js"></script>
+<script>
+
+	// :: 섬네일 클릭시 테두리에 색상 추가
+	$(document).on('click', '.storeImgSmall .sizeFixImg canvas', function(){
+		$('.storeImgSmall .imgUploadBox').removeClass('selected');
+		$(this).parent('.imgUploadBox').addClass('selected');
+	});
+
+
+	// :: 테이블 내 <tr> 태그 위로 이동 스크립트
+	$(document).on('click', '.moveUp', function(){
+
+		let	$targetTr	=	$(this).closest('tr');
+
+		$targetTr.prev().before($targetTr);
+	});
+
+	// :: 테이블 내 <tr> 태그 아래로 이동 스크립트
+	$(document).on('click', '.moveDown', function(){
+
+		let	$targetTr	=	$(this).closest('tr');
+
+		$targetTr.next().after($targetTr);
+	});
+
+
+	//  :: 페이징 스크립트
+	$(document).on('click', '.page_group a',function(){
+		let pageGroup	=	$(this).parent('li.pageNum').siblings('li');
+		$(pageGroup).removeClass('on');
+		$(this).parent('li.pageNum').addClass('on');
+	});
+
+
+	// :: 상품추가 팝업창 표시 스크립트
+	function opengAddPopup(){
+		$('.popup').show();
+		$('.contents').addClass('overlay');
+	};
+
+
+
+</script>
+</body>
+</html>
