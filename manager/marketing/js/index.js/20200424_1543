@@ -1,0 +1,150 @@
+$(document).ready(function(){
+	get_bbs();
+});
+
+function movePage(pno){
+	pno						=	pno			?	pno		:	1;
+	$('input[name="pno"]').val(pno);
+	document.frm.submit();
+}
+
+function get_bbs(){
+
+	$('#eventList').html('');
+
+	let token				=	$('input[name="token"]').val();
+	let pno					=	$('input[name="pno"]').val();
+	let searchType			=	$('select[name="searchType"]').val();
+	let searchWord			=	$('input[name="searchWord"]').val();
+	let startDate			=	$('input[name="startDate"]').val();
+	let endDate				=	$('input[name="endDate"]').val();
+	let url					=	'/manager/marketing/event/index_get_event';
+	let dataType			=	'json';
+	let param				= 	{
+		pno					:	pno,
+		searchType			:	searchType,
+		searchWord			:	searchWord,
+		startDate 			:	startDate,
+		endDate				:	endDate,
+		token				:	token
+	};
+
+	postService(url, dataType, param, function(data){
+		let list			=	data.list;
+		let totalCount		=	data.totalCount;
+		let recordPerPage	=	data.recordPerPage;
+		let pnoPerPage		=	data.pnoPerPage;
+		let temp 			=	data.temp;
+		let str				=	'';
+
+		if(list.length){
+			$.each(list, function(index, event) {
+
+				str				+=	'<tr>';
+				str				+=	'	<td>';
+				str				+=	'		<label>';
+				str				+=	'			<input type="checkbox" value="'+event.eventCode+'" name="code" class="code">';
+				str				+=	'		</label>';
+				str				+=	'	</td>';
+				str				+=	'	<td>'+event.eventName+'</td>';
+				str				+=	'	<td>'+event.startDate+'</td>';
+				str				+=	'	<td>';
+				str				+=	'		<span>';
+				str				+=	'			<a href="http://nonghyup.heeyam.com/manager/marketing/eventModify?no='+event.eventCode+'" class="btn small col_main f_w">상세보기</a>';
+				str				+=	'		</span>';
+				str				+=	'		<span>';
+				str				+=	'			<a href="javascript:delete_event('+event.eventCode+');" class="btn small col_darkGrey f_w">삭제</a>';
+				str				+=	'		</span>';
+				str				+=	'	</td>';
+				str				+=	'</tr>';
+
+			});
+		} else {
+			str				+=	'<tr>';
+			str				+=	'	<td colspan="11">등록된 게시물이 없습니다.</td>';
+			str				+=	'</tr>';
+		}
+
+		$('#eventList').html(str);
+		setPaging(recordPerPage, pnoPerPage, pno, totalCount);
+	});
+}
+
+function delete_event(code){
+	var bbsIdx 				=	[];
+	bbsIdx[0]				=	code;
+
+	let token				=	$('input[name="token"]').val();
+	let bbsCate 			=	$('input[name="bbsCate"]').val();
+
+	let url 				=	'/manager/board/event/index_delete_bbs';
+	let dataType			=	'json';
+	let param				= 	{
+		token					:	token,
+		bbsIdx 					:	bbsIdx,
+		bbsCate 				:	bbsCate
+	};
+
+	if(confirm('삭제하시겠습니까?')){
+		postService(url, dataType, param, '', '');
+	}
+}
+
+function delete_eventArr(){
+	if ($('input:checkbox[name="code"]').is(":checked") == false) {
+		alert('삭제할 게시물을 선택해주세요.');
+		return false;
+	}
+	var bbsIdx 				=	[];
+	let token				=	$('input[name="token"]').val();
+
+	$("input[name='code']:checked").each(function(i){
+		bbsIdx.push($(this).val());
+	});
+
+	let bbsCate 			=	$('input[name="bbsCate"]').val();
+
+	let url 				=	'/manager/board/event/index_delete_bbs';
+	let dataType			=	'json';
+	let param				= 	{
+		token					:	token,
+		bbsIdx 					:	bbsIdx,
+		bbsCate					:	bbsCate
+	};
+
+	if(confirm('삭제하시겠습니까?')){
+		postService(url, dataType, param, '', '');
+	}
+}
+
+function update_state(){
+	var goodsCode = [];
+	let token				=	$('input[name="token"]').val();
+	let goodsState 			=	$('select[name="setState"]').val();
+
+	if ($('input:checkbox[name="code"]').is(":checked") == false) {
+		alert('변경할 상품을 선택해주세요.');
+		return false;
+	}
+
+	if(goodsState == ''){
+		alert('변경할 상태를 선택해주세요.');
+		return false;
+	}
+	//console.log(goodsState);
+	$("input[name='code']:checked").each(function(i){
+		goodsCode.push($(this).val());
+	});
+
+	let url 				=	'/manager/goods/event/index_update_goodsState';
+	let dataType			=	'json';
+	let param				= 	{
+		token					:	token,
+		goodsCode 				:	goodsCode,
+		goodsState				:	goodsState
+	};
+
+	if(confirm('변경하시겠습니까?')){
+		postService(url, dataType, param, '', '');
+	}
+}
