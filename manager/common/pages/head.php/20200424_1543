@@ -1,0 +1,88 @@
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/common/pages/top.php';
+
+// 로그인 확인
+$urlStr 				=	$_SERVER['REQUEST_URI'];
+$urlArr 				=	explode('/', $urlStr);
+$checkUrl 				=	$urlArr[2];
+use Common\classes\MemberManager;
+$MemberManager 			=	new MemberManager();
+if($checkUrl != 'intro'){
+	if($User->userCode()){
+		$search 		=	array(
+			'userCode'	=>	$User->userCode()
+		);
+		$msg 		=	$MemberManager->get_user(1, '', '', $search);
+		if($msg->getData()){
+			$userInfo 			=	$msg->getData();
+			$user 				=	$userInfo[0];
+			$userType 			=	$user['userType'];
+			$isRight1			=	$user['isRight1'];
+			$isRight2			=	$user['isRight2'];
+			$isRight3			=	$user['isRight3'];
+			$isRight4			=	$user['isRight4'];
+			$isRight5			=	$user['isRight5'];
+			if($userType == 3){
+				if($checkUrl == 'set'){
+					if($isRight1 != 1){
+						$CommonManager->goBack('접근권한이 없습니다.');
+					}
+				}
+				if($checkUrl == 'product'){
+					if($isRight2 != 1){
+						$CommonManager->goBack('접근권한이 없습니다.');
+					}
+				}
+				if($checkUrl == 'order'){
+					if($isRight3 != 1){
+						$CommonManager->goBack('접근권한이 없습니다.');
+					}
+				}
+				if($checkUrl == 'member'){
+					if($isRight4 != 1){
+						$CommonManager->goBack('접근권한이 없습니다.');
+					}
+				}
+				if($checkUrl == 'board'){
+					if($isRight5 != 1){
+						$CommonManager->goBack('접근권한이 없습니다.');
+					}
+				}
+			}
+		} else {
+			session_start();
+			session_unset();
+			session_destroy();
+
+			$_SESSION['userID']		=	'';
+			$_SESSION['userCode']		=	'';
+			$_SESSION['userName']		=	'';
+			$_SESSION['isRegular']		=	'';
+			$CommonManager->goPage('/manager/intro/login', '로그인이 필요합니다.');
+		}
+	} else {
+		$CommonManager->goPage('/manager/intro/login', '로그인이 필요합니다.');
+	}
+}
+?>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>nonghyup</title>
+
+	<!-- :: 파비콘(변경예정) -->
+	<link rel="shortcut icon" type="image/png" href="/common/img/invalid-name.png">
+
+	<link type="text/css" rel="stylesheet" href="/manager/common/css/reset.css">
+	<link type="text/css" rel="stylesheet" href="/manager/common/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/manager/common/css/jquery-ui.min.css">
+
+	<script src="/manager/common/js/jquery-3.1.1.min.js"></script>
+	<script src="/manager/common/js/jquery-ui-1.12.1.js"></script>
+	<script src="/common/js/common.js"></script>
+</head>
+<body>
