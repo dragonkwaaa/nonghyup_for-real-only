@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/head.php';
+?>
+<body>
+<div class="container">
+	<?php include $_SERVER['DOCUMENT_ROOT'] . '/common/pages/header.php';?>
+	<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/topMenu.php';?>
+	<div class="contents">
+		<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/rightFloat.php';?>
+		<div class="section mainSect">
+
+			<!-- :: 슬라이더 대형 이미지 파트 2개 나열 (웹) -->
+			<div class="mainImgSlider customSlider webViewGroup">
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainLongBanner.png" class="slideImg">
+					</a>
+				</div>
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainLongBanner.png" class="slideImg">
+					</a>
+				</div>
+			</div>
+
+            <div class="mainImgSlider customSlider webViewGroup">
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainLongBanner.png" class="slideImg">
+					</a>
+				</div>
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainLongBanner.png" class="slideImg">
+					</a>
+				</div>
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainLongBanner.png" class="slideImg">
+					</a>
+				</div>
+			</div>
+
+			<!-- :: 모바일 대형 이미지 파트 2개 나열 (모바일) -->
+			<div class="mainImgSlider customSlider mobileViewGroup relative">
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainMobileSlider.png" class="slideImg">
+					</a>
+				</div>
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainMobileSlider.png" class="slideImg">
+					</a>
+				</div>
+			</div>
+            <div class="mainImgSlider customSlider mobileViewGroup relative">
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainMobileSlider.png" class="slideImg">
+					</a>
+				</div>
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainMobileSlider.png" class="slideImg">
+					</a>
+				</div>
+				<div class="sliderImgSingle">
+					<a href="/event/eventSpec">
+						<img src="/common/img/mainMobileSlider.png" class="slideImg">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/footer.php';?>
+</div>
+<script src="/intro/js/index.js"></script>
+</div>
+</body>
+</html>
