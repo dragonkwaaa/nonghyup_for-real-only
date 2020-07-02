@@ -1,0 +1,90 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/head.php';
+    $mCode					=	'01';
+	$lCode					=	'0116';
+?>
+<body>
+
+<div class="container">
+	<!-- gnb -->
+	<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/header.php'; ?>
+
+
+	<div class="wrapper">
+		<!-- lnb -->
+		<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/set/pages/set_left.php'; ?>
+
+		<div class="contents">
+			<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+			<input type="hidden" name="userCode" value="<?= $code?>">
+			<input type="hidden" name="type" value="<?= $type?>">
+			<input type="hidden" name="isOrgRegular" value="">
+			<!-- :: 기본 정보 파트 -->
+			<div class="set_field">
+				<div class="field_title">
+					<span class="title_mark">■</span>
+					<span>푸터 정보</span>
+				</div>
+				<table class="set_table">
+					<colgroup>
+						<col width="200">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>
+							<span>상호명</span>
+						</th>
+						<td>
+                            <input type="" name="" class="tbox long">
+                        </td>
+					</tr>
+					<tr>
+						<th>대표자명</th>
+						<td>
+                            <input type="" name="" class="tbox long">
+                        </td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td>
+                            <input type="" name="" class="tbox long" placeholder="">
+                            <a href="javascript:void(0);" class="btn small col_main f_w adrSearMod">검색</a>
+                            <input type="" name="" class="tbox long mt5" placeholder="상세주소">
+						</td>
+					</tr>
+					<tr>
+						<th>전화번호</th>
+						<td>
+                            <div>
+                                <input type="" name="" class="tbox" placeholder="지사명">
+                                <input type="" name="" class="tbox normal mt5" placeholder="전화번호">
+                            </div>
+                            <div>
+                                <input type="" name="" class="tbox" placeholder="지사명">
+                                <input type="" name="" class="tbox normal mt5" placeholder="전화번호">
+                            </div>
+						</td>
+					</tr>
+					<tr>
+						<th>메일</th>
+						<td>
+                            <input type="" name="" class="tbox long">
+                        </td>
+					</tr>
+					<tr>
+						<th>사업자 등록번호</th>
+						<td>
+                            <input type="" name="" class="tbox long">
+                        </td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="btn_group" id="buttonSel">
+				<a href="javascript:void(0)" class="ml15 btn col_main">확인</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
