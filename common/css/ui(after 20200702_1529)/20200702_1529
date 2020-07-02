@@ -1,0 +1,617 @@
+.relative {
+	position : relative;
+}
+.absoluteR {
+	position : absolute;
+	top : 0;
+	right : 0;
+}
+.hide {
+	display : none;
+}
+.absoluteT {
+	position : absolute;
+	top : 0;
+	left : 0;
+}
+.absoluteL {
+	position : absolute;
+	top : 0;
+	left : 0;
+}
+.absoluteMR {
+	position : absolute;
+	top : 50%;
+	right : 0;
+	transform : translateY(-50%);
+	-webkit-transform : translateY(-50%);
+}
+input::placeholder {
+	color : #c0c0c0;
+}
+textarea::placeholder {
+	color : #c0c0c0;
+}
+.separatedLeft {
+	display : inline-block;
+	width : 50%;
+	vertical-align : top;
+}
+.separatedRight {
+	display : inline-block;
+	width : 50%;
+	vertical-align : top;
+}
+
+.verticalM {
+	vertical-align : middle;
+}
+.ml3 {
+	margin-left : 3px;
+}
+.ml5 {
+	margin-left : 5px;
+}
+.ml7 {
+	margin-left : 7px;
+}
+.ml8 {
+	margin-left : 8px;
+}
+.ml9 {
+	margin-left : 9px;
+}
+.ml10 {
+	margin-left : 10px;
+}
+.ml11 {
+	margin-left : 11px;
+}
+.ml13 {
+	margin-left : 13px;
+}
+.ml14 {
+	margin-left : 14px;
+}
+.ml15 {
+	margin-left : 15px;
+}
+.ml25 {
+	margin-left : 25px;
+}
+.ml30 {
+	margin-left : 30px;
+}
+.ml40 {
+	margin-left : 40px;
+}
+.mr8 {
+	margin-right : 8px;
+}
+.mt5 {
+	margin-top : 5px;
+}
+.mt7 {
+	margin-top : 7px;
+}
+.mt9 {
+	margin-top : 9px;
+}
+.mt10 {
+	margin-top : 10px;
+}
+.mt12 {
+	margin-top : 12px;
+}
+.mt13 {
+	margin-top : 13px;
+}
+.mt14 {
+	margin-top : 14px;
+}
+.mt16 {
+	margin-top : 16px;
+}
+.mt20 {
+	margin-top : 20px;
+}
+.mt30 {
+	margin-top : 30px;
+}
+.mt40 {
+	margin-top : 40px;
+}
+.mt50 {
+	margin-top : 50px;
+}
+.mt70 {
+	margin-top : 70px;
+}
+.mt80 {
+	margin-top : 80px;
+}
+.mt100 {
+	margin-top : 100px;
+}
+.section {
+	width : 100%;
+	display : block;
+}
+
+.mainTitle {
+	display : block;
+	width: 100%;
+	padding : 80px 0 53px 0;
+	font-size: 30px;
+	font-weight: 600;
+	text-align: center;
+	color: #000000;
+}
+
+label input[type=checkbox], 
+label input[type=radio] {
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	background : url("/common/img/checkBox_off.png") no-repeat center / cover;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+	/* vertical-align: middle; */
+	vertical-align: top;
+}
+
+label input[type=radio] {
+	background : #fff;
+	padding : 2px;
+	border : 1px solid #b3b3b3;
+	border-radius : 50% !important;
+}
+label input[type=radio]:checked {
+	border : 3px solid #ffc20e;
+}
+
+
+
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input, input[type=text], 
+input[type=password], 
+.tbox {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    -webkit-border-radius: 0!important;
+    box-shadow: none !important;
+    /* -webkit-border-radius: 0 !important; */
+    /* -moz-border-radius: 0 !important; */
+    /* border-radius: 0 !important; */
+}
+
+label input[type=checkbox]:checked {
+	background : url("/common/img/checkBox_on.png") no-repeat center / cover;
+}
+
+input[type=checkbox] + span, 
+input[type=radio] + span {
+    padding-left: 8px;
+	font-size: 14px;
+	line-height : 18px;
+    color: #010101;
+    display: inline-block;
+	cursor: pointer;
+	/* vertical-align: middle; */
+	vertical-align: top;
+}
+
+input:read-only {
+	background-color : #e3e3e3;
+} 
+
+
+
+
+.f_semiBold {
+	font-weight : 500;
+}
+.f_bold {
+	font-weight : 600;
+}
+.f10 {
+	font-size : 10px;
+}
+.f12 {
+	font-size : 12px;
+}
+.f13 {
+	font-size : 13px;
+}
+.f14 {
+	font-size : 14px;
+}
+.f16 {
+	font-size : 16px;
+}
+.f17 {
+	font-size : 17px;
+}
+.f18 {
+	font-size : 18px;
+}
+
+.f20 {
+	font-size : 20px;
+}
+.f24 {
+	font-size : 24px;
+}
+.f30 {
+	font-size : 30px;
+}
+
+
+.iconMy {
+	width : 30px;
+	height : 30px;
+	padding : 15px 0;
+	display : inline-block;
+	background : url("/common/img/iconMy.png") no-repeat center / 30px 30px;
+}
+
+.iconCart {
+	width : 30px;
+	height : 30px;
+	padding : 15px 0;
+	display : inline-block;
+	background : url("/common/img/iconCart.png") no-repeat center / 30px 30px;
+}
+
+.searchIcon {
+	width : 68px;
+	height : 61px;
+	background : url("/common/img/iconSearch.png") no-repeat center / 28px 29px;
+}
+
+.iconHamburger {
+	width : 19px;
+	height : 17px;
+	line-height : 61px;
+	background : url("/common/img/iconHamburger.png") no-repeat center / cover;
+}
+.iconHamburgerM {
+	width : 41px;
+	height : 37px;
+	background : url("/common/img/iconHamburgerM.png") no-repeat center / cover;
+}
+
+.iconCard {
+	width : 30px;
+	height : 20px;
+	background : url("/common/img/iconCard.png") no-repeat center / cover;
+}
+.iconCash {
+	width : 33px;
+	height : 20px;
+	background : url("/common/img/iconCash.png") no-repeat center / cover;
+}
+.iconPhone {
+	width : 13px;
+	height : 20px;
+	background : url("/common/img/iconPhone.png") no-repeat center / cover;
+}
+
+
+.cardIconDelivery {
+	width : 77px;
+	height : 59px;
+	background : url("/common/img/cardIconDelivery.png") no-repeat center / cover;
+}
+
+.cardIconRefund {
+	width : 63px;
+	height : 62px;
+	background : url("/common/img/cardIconRefund.png") no-repeat center / cover;
+}
+
+.cardIconFavorite {
+	width : 70px;
+	height : 55px;
+	background : url("/common/img/cardIconFavorite.png") no-repeat center / cover;
+}
+.cardIconMyPost {
+	width : 66px;
+	height : 66px;
+	background : url("/common/img/cardIconMyPost.png") no-repeat center / cover;
+}
+
+.emptyCartIcon {
+	width : 119px;
+	height : 120px;
+	background : url("/common/img/iconEmptyCart.png") no-repeat center / cover;
+}
+
+.emptyGoodsIcon {
+	width : 117px;
+	height : 121px;
+	background : url("/common/img/emptyGoodsIcon.png") no-repeat center / cover;
+}
+
+.activated .heartIcon {
+	width : 27px;
+	height : 24px;
+	background : url("/common/img/heartIconFull.png") no-repeat center / cover;
+}
+
+.heartIcon {
+	width : 27px;
+	height : 24px;
+	background : url("/common/img/heartIconRim.png") no-repeat center / cover;
+}
+.iconLogout {
+	width : 30px;
+	height : 30px;
+	padding : 15px 0;
+	display : inline-block;
+	background : url("/common/img/iconLogout.png") no-repeat center / 30px 30px;
+}
+
+.kakaoIcon {
+    width : 30px;
+	height : 30px;
+	/* padding : 15px 0; */
+	display : inline-block;
+	background : url("/common/img/icon_social_kakao.png") no-repeat center / 30px 30px;
+}
+.facebookIcon {
+    width : 30px;
+	height : 30px;
+	/* padding : 15px 0; */
+	display : inline-block;
+	background : url("/common/img/icon_social_facebook.png") no-repeat center / 30px 30px;
+}
+.naverIcon {
+    width : 30px;
+	height : 30px;
+	/* padding : 15px 0; */
+	display : inline-block;
+	background : url("/common/img/icon_social_blog.png") no-repeat center / 30px 30px;
+}
+
+
+
+.deleteBtn {
+	width : 18px;
+	height : 18px;
+	display : block;
+	background : url("/common/img/iconClose.png") no-repeat center / cover;
+}
+
+.closePopBtn {
+    width: 26px;
+    height: 26px;
+    display: block;
+	background: url("/common/img/iconClose.png") no-repeat center / cover;
+}
+.plainBtn {
+	padding : 14px 20px;
+	font-size : 14px;
+	border : 1px solid #b3b3b3;
+	display : inline-block;
+}
+
+.plainBtn.long {
+	padding : 14px 20px;
+	font-size : 14px;
+	border : 1px solid #b3b3b3;
+	display : inline-block;
+	width : 110px;
+}
+.rimlessBtn {
+	padding : 14px 20px;
+	font-size : 14px;
+	display : inline-block;
+	width : 110px;
+}
+ul li.emptyList {
+	font-size : 20px;
+	font-weight : 600;
+	text-align : center;
+	padding : 20px 0;
+}
+
+ul.pagingGroup {
+	padding : 39px 0 0 0;
+	font-size : 0;
+	display : block;
+	text-align : center;
+}
+ul.pagingGroup li {
+	display : inline-block;
+	width : 16px;
+	height : 16px;
+	text-align : center;
+	vertical-align : middle;
+	padding-bottom : 9px;
+	border-bottom : 2px solid #e3e3e3;
+}
+ul.pagingGroup li.on {
+	border-bottom : 2px solid #000;
+}
+ul.pagingGroup li a {
+	width : 100%;
+	height : 17px;
+	font-size : 16px;
+	display : block;
+}
+.pagingPrev {
+	display : block;
+	background : url("/common/img/iconPaging_Prev.png") no-repeat center / 6px 12px;
+}
+.pagingNext {
+	display : block;
+	background : url("/common/img/iconPaging_next.png") no-repeat center / 6px 12px;
+}
+
+.arrowPrev {
+	display : inline-block;
+	width : 16px;
+	height : 17px;
+	background : url("/common/img/arrowPrev.png") no-repeat center / cover;
+}
+.arrowNext {
+	display : inline-block;
+	width : 16px;
+	height : 17px;
+	background : url("/common/img/arrowNext.png") no-repeat center / cover;
+}
+.arrowUp {
+	display : block;
+	margin : 0 auto;
+	width : 50px;
+	height : 64px;
+	background : url("/common/img/arrowUp.png") no-repeat center / cover;
+}
+
+
+.f_yellow {
+	color : #ffc20e;
+}
+.f_white {
+	color : #fff;
+}
+.f_red {
+	color : #fb376a;
+}
+
+.bg_black {
+	background-color : #000;
+}
+.bg_yellow {
+	background-color : #ffc20e;
+}
+.bg_lightGrey {
+	background-color: #fafafa;
+}
+.tAlignL {
+	text-align : left;
+}
+.tAlignR {
+	text-align : right;
+}
+.tAlignC {
+	text-align : center;
+}
+.vAlignT {
+	vertical-align : top;
+}
+.vAlignM {
+	vertical-align : middle;
+}
+.floatR {
+	float : right;
+}
+.f_underlined {
+	text-decoration : underline;
+}
+
+.sbox {
+	display : inline-block;
+	position : relative;
+}
+.sbox a {
+	padding : 18px 30px;
+	border : 1px solid #b3b3b3;
+	width : 151px;
+	display : block;
+	font-size : 16px;
+	text-align : left;
+}
+
+.sbox:before {
+	content : "";
+	width : 11px;
+	height : 6px;
+	position : absolute;
+	top : 25px;
+	right : 24px;
+	background : url("/common/img/iconDrop.png") no-repeat center / cover;
+}
+
+.sbox ul {
+	position : absolute;
+	top : 54px;
+	border : 1px solid #b3b3b3;
+	border-top : none;
+	background-color : #fff;
+	width : calc(100% - 2px);
+	height : auto;
+	max-height : 208px;
+	overflow : auto;
+	z-index : 10;
+	display : none;
+}
+.sbox ul li {
+	padding : 18px 30px;
+	font-size : 16px;
+	width : auto;
+	text-align : left;
+}
+.sbox ul li:hover {
+	/* background-color : #ffc20e; */
+	cursor : pointer;
+}
+.sbox ul li.disabled {
+	background-color : #e3e3e3;
+}
+.sbox ul li.disabled:hover {
+	background-color : #e3e3e3;
+}
+
+.popup {
+	display : none;
+	position : fixed;
+	top : 50%;
+	left : 50%;
+	transform : translate(-50%, -50%);
+	-webkit-transform : translate(-50%, -50%);
+	background-color : #fff;
+	z-index : 101;
+}
+
+.tip {
+	font-size : 10px;
+	color : #fb376a;
+}
+
+.lh20 {
+	line-height : 20px;
+}
+.popup .regInfoList.changeoptionGroup .btnGroup {
+    margin-top: 55px;
+}
+.regInfoList.changeoptionGroup .btnGroup {
+    width: calc(100% - 193px);
+}
+
+
+
+
+/* :: 모바일 겸용 */
+.f_w14m30 {
+	font-size : 14px;
+	margin-left : 8px;
+	vertical-align : middle;
+}
+
+
+.brn_right {
+	border-right : none;
+}
