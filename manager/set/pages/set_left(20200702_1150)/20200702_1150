@@ -1,0 +1,24 @@
+<nav class="lnb_wrap">
+	<div class="lnb_con">
+		<div class="lnb_show">환경설정</div>
+		<ul class="lnb_menu">
+			<!--<li>
+				<a href="#none" class="menu_name">기본설정</a>
+				<ul class="lnb_sub_menu">
+					<li><a href="/manager/set/" class="<?/*=($lCode == '0101' ? ' on' : '')*/?>">기본정보 설정</a></li>
+				</ul>
+			</li>-->
+			<li>
+				<a href="#none" class="menu_name">배너설정</a>
+				<ul class="lnb_sub_menu">
+					<li><a href="/manager/set/bannerList?type=1" class="<?=($lCode == '0111' ? ' on' : '')?>">메인배너</a></li>
+					<li><a href="/manager/set/bannerList?type=2" class="<?=($lCode == '0112' ? ' on' : '')?>">보조배너(왼쪽)</a></li>
+					<li><a href="/manager/set/bannerList?type=3" class="<?=($lCode == '0113' ? ' on' : '')?>">보조배너(오른쪽)</a></li>
+					<li><a href="/manager/set/bannerList?type=4" class="<?=($lCode == '0114' ? ' on' : '')?>">상품리스트 배너</a></li>
+                    <li><a href="/manager/set/popReg" class="<?=($lCode == '0115' ? ' on' : '')?>">광고팝업</a></li>
+                    <li><a href="/manager/set/footerReg" class="<?=($lCode == '0116' ? ' on' : '')?>">푸터등록</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
