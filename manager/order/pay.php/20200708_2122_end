@@ -1,0 +1,204 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/head.php';
+$mCode					=	'03';
+$lCode					=	'0305';
+
+$nowYear				=	date('Y');
+$nowMonth 				=	date('M');
+$lastYear 				=	(int)($nowYear - 1);
+$nextYear 				=	(int)($nowYear + 1);
+
+$pno					=	(int)$SubFunction->allTags($_GET['pno'])	?	(int)$SubFunction->allTags($_GET['pno'])	:	1;
+$searchType				=	$SubFunction->allTags($_GET['searchType']);
+$searchWord				=	$SubFunction->allTags($_GET['searchWord']);
+/*$startDate				=	$SubFunction->allTags($_GET['startDate']);
+$endDate				=	$SubFunction->allTags($_GET['endDate']);*/
+
+$pnoNum 				=	(int)$SubFunction->allTags($_GET['pnoNum'])	?	(int)$SubFunction->allTags($_GET['pnoNum'])	:	10;
+$orderType				=	(int)$SubFunction->allTags($_GET['orderType'])	?	(int)$SubFunction->allTags($_GET['orderType'])	:	2;
+
+$searchYear 			=	$SubFunction->allTags($_GET['searchYear'])		?	$SubFunction->allTags($_GET['searchYear'])	:	$nowYear;
+$searchMonth 			=	$SubFunction->allTags($_GET['searchMonth'])	?	$SubFunction->allTags($_GET['searchYear'])	:	$nowMonth;;
+$searchPay 				=	(int)$SubFunction->allTags($_GET['searchPay'])
+?>
+<body>
+<div class="container">
+	<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/header.php'; ?>
+	<div class="wrapper">
+		<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/order/pages/order_left.php'; ?>
+		<div class="contents">
+			<form name="frm" id="frm" onkeypress="if(event.keyCode==13) {document.frm.submit(); return false;}">
+				<div class="set_field">
+					<div class="field_title">
+						<span class="title_mark">■ 주문 검색</span>
+					</div>
+					<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+					<input type="hidden" name="pno" value="<?=$pno?>">
+					<table class="set_table">
+						<colgroup>
+							<col width="200">
+							<col width="*">
+							<col width="200">
+							<col width="*">
+						</colgroup>
+						<tbody>
+						<tr>
+							<th>검색어</th>
+							<td>
+							<span class="sbox small">
+								<select name="searchType">
+									<option value="1" <?php if($searchType == 1){ echo 'checked';}?>>주문자명</option>
+									<option value="4" <?php if($searchType == 2){ echo 'checked';}?>>주문자 핸드폰</option>
+								</select>
+							</span>
+								<input class="tbox" name="searchWord" value="<?=$searchWord?>">
+							</td>
+							<th>결제방법</th>
+							<td>
+								<label>
+									<input type="radio" value="0" name="searchPay"<?php if(!$searchPay){ echo 'checked';}?> >
+									<span>전체</span>
+								</label>
+								<label class="ml15">
+									<input type="radio" value="1" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+									<span>카드</span>
+								</label>
+								<label class="ml15">
+									<input type="radio" value="1" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+									<span>계좌</span>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th>정기결제날짜</th>
+							<td colspan="3">
+								<span class="sbox small">
+									<select name="searchYear">
+										<option value="<?= $lastYear?>" <?php if($lastYear == $searchYear){ echo 'selected';}?>><?= $lastYear?></option>
+										<option value="<?= $nowYear?>" <?php if($nowYear == $searchYear){ echo 'selected';}?>><?= $nowYear?></option>
+										<option value="<?= $nextYear?>" <?php if($nextYear == $searchYear){ echo 'selected';}?>><?= $nextYear?></option>
+									</select>
+                                </span>
+                            
+                                <div class="chkGroup dailyDaySort">
+								    <label>
+								    	<input type="checkbox" value="0" name="searchPay"<?php if(!$searchPay){ echo 'checked';}?> >
+								    	<span>1월</span>
+								    </label>
+								    <label class="ml5">
+								    	<input type="checkbox" value="1" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>2월</span>
+								    </label>
+								    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>3월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>4월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>5월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>6월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>7월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>8월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>9월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>10월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>11월</span>
+                                    </label>
+                                    <label class="ml5">
+								    	<input type="checkbox" value="2" name="searchPay" <?php if($searchPay == 1){ echo 'checked';}?> >
+								    	<span>12월</span>
+                                    </label>
+                                </div>
+
+
+
+
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="set_menu">
+						<a href="javascript:void(0)" class="btn normal col_main f_w" onclick="document.frm.submit()" >검색</a>
+						<a href="/manager/order?type=<?= $type?>&type=<?= $state?>" class="btn normal col_darkGrey f_w ml5">전체목록</a>
+					</div>
+				</div>
+			</form>
+			<div class="list_field">
+				<div class="field_title">
+					<span class="title_mark">■ 주문정보</span>
+				</div>
+				<div class="list_menu">
+					<span class="right_menu">
+						<span class="sbox small">
+							<select name="orderType" onchange="get_order()">
+								<option value="1" <?php if($orderType == 1){ echo 'selected';}?>>최신순 ▲</option>
+								<option value="2" <?php if($orderType == 2){ echo 'selected';}?>>최신순 ▼</option>
+								<option value="3" <?php if($orderType == 3){ echo 'selected';}?>>금액순 ▲</option>
+								<option value="4" <?php if($orderType == 4){ echo 'selected';}?>>금액순 ▼</option>
+							</select>
+						</span>
+						<span class="sbox small">
+							<select name="pnoNum" onchange="get_order()">
+								<option value="10">10개씩</option>
+								<option value="20">20개씩</option>
+								<option value="30">30개씩</option>
+							</select>
+						</span>
+					</span>
+				</div>
+				<table class="list_table">
+					<colgroup>
+						<col width="40">
+						<col width="80">
+						<col width="150">
+						<col width="150">
+						<col width="80">
+						<col width="80">
+						<col width="80">
+					</colgroup>
+					<thead>
+					<tr>
+						<th>순서</th>
+						<th>주문/상품</th>
+						<th>받는 주소</th>
+						<th>상품정보</th>
+						<th>주문자 정보</th>
+						<th>금액</th>
+						<th>등록일</th>
+					</tr>
+					</thead>
+					<tbody id="orderList">
+					</tbody>
+				</table>
+			</div>
+			<div class="page_group">
+				<ul class="page_box pagingGroup">
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="/manager/order/js/index.js"></script>
+<script src="/manager/common/js/common.js"></script>
+</html>
