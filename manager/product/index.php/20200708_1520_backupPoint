@@ -1,107 +1,139 @@
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/head.php';
-$mCode					=	'04';
-$type 					=	$SubFunction->allTags($_GET['type'])	?	$SubFunction->allTags($_GET['type'])	:	1;
-$lCode 					=	$mCode.'0'.$type;
+$mCode					=	'02';
+$lCode					=	'0203';
 $pno					=	(int)$SubFunction->allTags($_GET['pno'])	?	(int)$SubFunction->allTags($_GET['pno'])	:	1;
 $searchType				=	$SubFunction->allTags($_GET['searchType']);
 $searchWord				=	$SubFunction->allTags($_GET['searchWord']);
-$pnoNum 				=	(int)$SubFunction->allTags($_GET['pnoNum'])	?	(int)$SubFunction->allTags($_GET['pnoNum'])	:	10;
-$orderType				=	(int)$SubFunction->allTags($_GET['orderType'])	?	(int)$SubFunction->allTags($_GET['orderType'])	:	2;
+$searchState 			=	$SubFunction->allTags($_GET['searchState']);
+$startDate				=	$SubFunction->allTags($_GET['startDate']);
+$endDate				=	$SubFunction->allTags($_GET['endDate']);
+$minPrice				=	$SubFunction->allTags($_GET['minPrice']);
+$maxPrice				=	$SubFunction->allTags($_GET['maxPrice']);
+
 
 ?>
 <body>
 <div class="container">
 	<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/header.php'; ?>
 	<div class="wrapper">
-		<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/member/pages/member_left.php'; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/product/pages/product_left.php'; ?>
 		<div class="contents">
 			<form name="frm" id="frm" onkeypress="if(event.keyCode==13) {document.frm.submit(); return false;}">
-				<div class="set_field">
-					<div class="field_title">
-						<span class="title_mark">■ <?= $menuStr?>회원검색</span>
-					</div>
-					<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
-					<input type="hidden" name="type" value="<?= $type?>">
-					<input type="hidden" name="pno" value="<?=$pno?>">
-					<table class="set_table">
-						<colgroup>
-							<col width="200">
-							<col width="*">
-							<col width="200">
-							<col width="*">
-						</colgroup>
-						<tbody>
-						<tr>
-							<th>검색어</th>
-							<td colspan="3">
+			<div class="set_field">
+				<div class="field_title">
+					<span class="title_mark">■ 전체 상품 관리</span>
+				</div>
+				<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+				<input type="hidden" name="pno" value="<?=$pno?>">
+				<input type="hidden" name="productType" value="3">
+				<table class="set_table">
+					<colgroup>
+						<col width="200">
+						<col width="*">
+						<col width="200">
+						<col width="*">
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>검색어</th>
+						<td>
 							<span class="sbox small">
 								<select name="searchType">
-									<option value="1" <?php if($searchType == 1){ echo 'checked';}?>>회원ID</option>
-									<option value="2" <?php if($searchType == 2){ echo 'checked';}?>>회원이름</option>
-									<option value="3" <?php if($searchType == 3){ echo 'checked';}?>>핸드폰번호</option>
+									<option value="1" <?php if($searchType == 1) echo 'selected'?>>상품명</option>
+									<?php if($type != 3){ ?>
+									<option value="2" <?php if($searchType == 2) echo 'selected'?>>카테고리명</option>
+									<?php } ?>
 								</select>
 							</span>
-								<input class="tbox" name="searchWord" value="<?=$searchWord?>">
-							</td>
-							<!--<th>상품금액</th>
-							<td>
-								<input class="tbox onlyNum" name="minPrice" value="<?/*=$minPrice*/?>"> ~ <input class="tbox onlyNum" name="maxPrice" value="<?/*=$maxPrice*/?>">
-							</td>-->
-						</tr>
-						<!--<tr>
-							<th>등록일</th>
-							<td colspan="3">
-								<input id="startDate" class="tbox" name="startDate" value="<?/*=$startDate*/?>" readonly> ~ <input id="endDate" class="tbox" name="endDate" value="<?/*=$endDate*/?>" readonly>
-								<a href="javascript:setSearchDate('0d')" class="btn smaller higher col_grey ml10">당일</a>
-								<a href="javascript:setSearchDate('1d')" class="btn smaller higher col_grey ml5">어제</a>
-								<a href="javascript:setSearchDate('1w')" class="btn smaller higher col_grey ml5">일주일</a>
-								<a href="javascript:setSearchDate('1m')" class="btn smaller higher col_grey ml5">1달</a>
-								<a href="javascript:setSearchDate('3m')" class="btn smaller higher col_grey ml5">3달</a>
-								<a href="javascript:setSearchDate('6m')" class="btn smaller higher col_grey ml5">6달</a>
-							</td>
-						</tr>-->
-						</tbody>
-					</table>
-					<div class="set_menu">
-						<a href="javascript:void(0)" class="btn normal col_main f_w" onclick="document.frm.submit()" >검색</a>
-						<a href="/manager/member?type=<?= $type?>" class="btn normal col_darkGrey f_w ml5">전체목록</a>
-					</div>
+							<input class="tbox" name="searchWord" value="<?=$searchWord?>">
+						</td>
+						<th>상품금액</th>
+						<td>
+							<input class="tbox onlyNum" name="minPrice" value="<?=$minPrice?>"> ~ <input class="tbox onlyNum" name="maxPrice" value="<?=$maxPrice?>">
+						</td>
+					</tr>
+					<tr>
+						<th>판매상태</th>
+						<td colspan="">
+						<!--	<label>
+								<input type="radio" name="goodsState" value="">
+								<span>전체</span>
+							</label>-->
+							<label class="ml10">
+								<input type="radio" name="searchState" value="1" <?php if($searchState == 1) echo 'checked'?>>
+								<span>사용</span>
+							</label>
+							<label class="ml10">
+								<input type="radio" name="searchState" value="2" <?php if($searchState == 2) echo 'checked'?>>
+								<span>미사용</span>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<th>등록일</th>
+						<td colspan="3">
+							<input id="startDate" class="tbox" name="startDate" value="<?=$startDate?>" readonly> ~ <input id="endDate" class="tbox" name="endDate" value="<?=$endDate?>" readonly>
+							<a href="javascript:setSearchDate('0d')" class="btn smaller higher col_grey ml10">당일</a>
+							<a href="javascript:setSearchDate('1d')" class="btn smaller higher col_grey ml5">어제</a>
+							<a href="javascript:setSearchDate('1w')" class="btn smaller higher col_grey ml5">일주일</a>
+							<a href="javascript:setSearchDate('1m')" class="btn smaller higher col_grey ml5">1달</a>
+							<a href="javascript:setSearchDate('3m')" class="btn smaller higher col_grey ml5">3달</a>
+							<a href="javascript:setSearchDate('6m')" class="btn smaller higher col_grey ml5">6달</a>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<div class="set_menu">
+					<a href="javascript:void(0)" onclick="document.frm.submit()"  class="btn normal col_main f_w">검색</a>
+					<a href="/manager/product/" class="btn normal col_darkGrey f_w ml5">전체목록</a>
 				</div>
+			</div>
 			<div class="list_field">
 				<div class="field_title">
-					<span class="title_mark">■ 회원목록</span>
+					<span class="title_mark">■ 상품 리스트</span>
 				</div>
 				<div class="list_menu">
 					<span class="left_menu">
 						<a href="javascript:checkAll();" class="btn col_grey check">전체선택</a>
 						<a href="javascript:checkNone()" class="btn col_grey">전체해제</a>
-						<a href="javascript:delete_memberArr();" class="btn col_darkGrey f_w">선택삭제</a>
+						<a href="javascript:delete_productArr();" class="btn col_darkGrey f_w">선택삭제</a>
+						<span class="sbox ml15">
+							<select id="setState" name="setState">
+								<option value="">- 선택 -</option>
+								<option value="1">사용</option>
+								<option value="2">미사용</option>
+								<option value="3">품절</option>
+							</select>
+						</span>
+						<a href="javascript:update_state();" class="btn col_darkGrey f_w">상태변경</a>
 					</span>
 					<span class="right_menu">
+						<!--<a href="javascript:void(0)" class="btn col_darkGrey f_w">엑셀저장</a>-->
 						<span class="sbox small">
-							<select name="orderType" onchange="get_member()">
-								<option value="1" <?php if($orderType == 1){ echo 'selected';}?>>최신순 ▲</option>
-								<option value="2" <?php if($orderType == 2){ echo 'selected';}?>>최신순 ▼</option>
+							<select name="orderType" onchange="get_bundleGoods()">
+								<option value="1">금액순 ▲</option>
+								<option value="2">금액순 ▼</option>
 							</select>
 						</span>
-						<span class="sbox small">
-							<select name="pnoNum" onchange="get_member()">
-								<option value="10">10개씩</option>
-								<option value="20">20개씩</option>
-								<option value="30">30개씩</option>
+					<!--	<span class="sbox small">
+							<select name="perNum" onchange="get_bundleGoods()">
+								<option value="20">10개씩</option>
+								<option value="50">20개씩</option>
+								<option value="100">30개씩</option>
 							</select>
-						</span>
+						</span>-->
 					</span>
 				</div>
 				<table class="list_table">
 					<colgroup>
 						<col width="40">
+						<!--<col width="80">-->
 						<col width="80">
-						<col width="150">
-						<col width="150">
+						<col width="180">
 						<col width="80">
+						<col width="40">
 						<col width="80">
-						<col width="80">
+						<col width="120">
 					</colgroup>
 					<thead>
 					<tr>
@@ -110,29 +142,104 @@ $orderType				=	(int)$SubFunction->allTags($_GET['orderType'])	?	(int)$SubFuncti
 								<input type="checkbox" name="all_chk" onclick="toggleCheckAll(this)">
 							</label>
 						</th>
-						<th>아이디 / 이름</th>
-						<th>핸드폰번호</th>
-						<?php if($type != 3){?>
-						<th>주소</th>
-						<th>회원타입</th>
-						<?php } ?>
-						<th>최근접속일</th>
-						<th>등록일</th>
+						<!--<th>순서</th>-->
+						<th>상품이미지</th>
+						<th>상품정보</th>
+						<th>기본금액</th>
+					<!--	<th>재고</th>-->
+						<th>상태</th>
+						<th>관리</th>
 					</tr>
 					</thead>
-					<tbody id="memberList">
+
+
+					<tbody id="bundleGoods">
 					</tbody>
+
+
 				</table>
 			</div>
 			<div class="page_group">
 				<ul class="page_box pagingGroup">
+					<!--<li class="first arrow">
+						<a href="javascript:void(0);"></a>
+					</li>
+					<li class="prev arrow">
+						<a href="javascript:void(0);"></a>
+					</li>
+					<li class="pageNum on">
+						<a href="javascript:void(0);">1</a>
+					</li>
+					<li class="pageNum">
+						<a href="javascript:void(0);">2</a>
+					</li>
+					<li class="next arrow">
+						<a href="javascript:void(0); "></a>
+					</li>
+					<li class="end arrow">
+						<a href="javascript:void(0);"></a>
+					</li>-->
 				</ul>
 			</div>
 			</form>
 		</div>
 	</div>
-</div>
+</div>f
 </body>
-<script src="/manager/member/js/index.js"></script>
+<script src="/manager/product/js/index.js"></script>
 <script src="/manager/common/js/common.js"></script>
+<script>
+// :: 1차 카테고리 추가 스크립트
+$(document).on('click', '.cateAdd_1', function(){
+
+	var str 		=	'';
+	
+		// str			+=	'<div class="menu_list">';
+		str			+=	'<tr>';
+		str			+=	'	<td>';
+		str			+=	'		<label>';
+		str			+=	'			<input type="checkbox" value="">';
+		str			+=	'		</label>';
+		str			+=	'	</td>';
+		str			+=	'	<td>1</td>';
+		str			+=	'	<td>';
+		str			+=	'		<div>';
+		str			+=	'			<input class="tbox center" value="">';
+		str			+=	'		</div>';
+		str			+=	'	</td>';
+		str			+=	'	<td>1</td>';
+		str			+=	'	<td>';
+		str			+=	'		<label>';
+		str			+=	'			<input type="radio" name="isCheck0" value="1" checked="">';
+		str			+=	'			<span>사용</span>';
+		str			+=	'		</label>';
+		str			+=	'		<label class="ml10">';
+		str			+=	'			<input type="radio" name="isCheck0" value="0">';
+		str			+=	'			<span>미사용</span>';
+		str			+=	'		</label>';
+		str			+=	'	</td>';
+		str			+=	'	<td>';
+		str			+=	'		2019-12-06 11:00';
+		str			+=	'	</td>';
+		str			+=	'	<td>';
+		str			+=	'		<span>';
+		str			+=	'			<a href="javascript:void(0);" class="btn small col_main f_w">수정</a>';
+		str			+=	'		</span>';
+		str			+=	'		<span>';
+		str			+=	'			<a href="javascript:void(0)" class="btn small col_darkGrey f_w">삭제</a>';
+		str			+=	'		</span>';
+		str			+=	'	</td>';
+		str			+=	'</tr>';
+
+	$('.list_table tbody').append(str);
+});
+
+//  :: 페이징 스크립트
+$(document).on('click', '.page_group a',function(){
+	let pageGroup	=	$(this).parent('li.pageNum').siblings('li');
+	$(pageGroup).removeClass('on');
+	$(this).parent('li.pageNum').addClass('on');
+});
+
+</script>
 </html>
