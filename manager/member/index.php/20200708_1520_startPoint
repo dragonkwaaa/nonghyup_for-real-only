@@ -1,0 +1,138 @@
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/head.php';
+$mCode					=	'04';
+$type 					=	$SubFunction->allTags($_GET['type'])	?	$SubFunction->allTags($_GET['type'])	:	1;
+$lCode 					=	$mCode.'0'.$type;
+$pno					=	(int)$SubFunction->allTags($_GET['pno'])	?	(int)$SubFunction->allTags($_GET['pno'])	:	1;
+$searchType				=	$SubFunction->allTags($_GET['searchType']);
+$searchWord				=	$SubFunction->allTags($_GET['searchWord']);
+$pnoNum 				=	(int)$SubFunction->allTags($_GET['pnoNum'])	?	(int)$SubFunction->allTags($_GET['pnoNum'])	:	10;
+$orderType				=	(int)$SubFunction->allTags($_GET['orderType'])	?	(int)$SubFunction->allTags($_GET['orderType'])	:	2;
+
+?>
+<body>
+<div class="container">
+	<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/common/pages/header.php'; ?>
+	<div class="wrapper">
+		<?php include $_SERVER['DOCUMENT_ROOT'] . '/manager/member/pages/member_left.php'; ?>
+		<div class="contents">
+			<form name="frm" id="frm" onkeypress="if(event.keyCode==13) {document.frm.submit(); return false;}">
+				<div class="set_field">
+					<div class="field_title">
+						<span class="title_mark">■ <?= $menuStr?>회원검색</span>
+					</div>
+					<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+					<input type="hidden" name="type" value="<?= $type?>">
+					<input type="hidden" name="pno" value="<?=$pno?>">
+					<table class="set_table">
+						<colgroup>
+							<col width="200">
+							<col width="*">
+							<col width="200">
+							<col width="*">
+						</colgroup>
+						<tbody>
+						<tr>
+							<th>검색어</th>
+							<td colspan="3">
+							<span class="sbox small">
+								<select name="searchType">
+									<option value="1" <?php if($searchType == 1){ echo 'checked';}?>>회원ID</option>
+									<option value="2" <?php if($searchType == 2){ echo 'checked';}?>>회원이름</option>
+									<option value="3" <?php if($searchType == 3){ echo 'checked';}?>>핸드폰번호</option>
+								</select>
+							</span>
+								<input class="tbox" name="searchWord" value="<?=$searchWord?>">
+							</td>
+							<!--<th>상품금액</th>
+							<td>
+								<input class="tbox onlyNum" name="minPrice" value="<?/*=$minPrice*/?>"> ~ <input class="tbox onlyNum" name="maxPrice" value="<?/*=$maxPrice*/?>">
+							</td>-->
+						</tr>
+						<!--<tr>
+							<th>등록일</th>
+							<td colspan="3">
+								<input id="startDate" class="tbox" name="startDate" value="<?/*=$startDate*/?>" readonly> ~ <input id="endDate" class="tbox" name="endDate" value="<?/*=$endDate*/?>" readonly>
+								<a href="javascript:setSearchDate('0d')" class="btn smaller higher col_grey ml10">당일</a>
+								<a href="javascript:setSearchDate('1d')" class="btn smaller higher col_grey ml5">어제</a>
+								<a href="javascript:setSearchDate('1w')" class="btn smaller higher col_grey ml5">일주일</a>
+								<a href="javascript:setSearchDate('1m')" class="btn smaller higher col_grey ml5">1달</a>
+								<a href="javascript:setSearchDate('3m')" class="btn smaller higher col_grey ml5">3달</a>
+								<a href="javascript:setSearchDate('6m')" class="btn smaller higher col_grey ml5">6달</a>
+							</td>
+						</tr>-->
+						</tbody>
+					</table>
+					<div class="set_menu">
+						<a href="javascript:void(0)" class="btn normal col_main f_w" onclick="document.frm.submit()" >검색</a>
+						<a href="/manager/member?type=<?= $type?>" class="btn normal col_darkGrey f_w ml5">전체목록</a>
+					</div>
+				</div>
+			<div class="list_field">
+				<div class="field_title">
+					<span class="title_mark">■ 회원목록</span>
+				</div>
+				<div class="list_menu">
+					<span class="left_menu">
+						<a href="javascript:checkAll();" class="btn col_grey check">전체선택</a>
+						<a href="javascript:checkNone()" class="btn col_grey">전체해제</a>
+						<a href="javascript:delete_memberArr();" class="btn col_darkGrey f_w">선택삭제</a>
+					</span>
+					<span class="right_menu">
+						<span class="sbox small">
+							<select name="orderType" onchange="get_member()">
+								<option value="1" <?php if($orderType == 1){ echo 'selected';}?>>최신순 ▲</option>
+								<option value="2" <?php if($orderType == 2){ echo 'selected';}?>>최신순 ▼</option>
+							</select>
+						</span>
+						<span class="sbox small">
+							<select name="pnoNum" onchange="get_member()">
+								<option value="10">10개씩</option>
+								<option value="20">20개씩</option>
+								<option value="30">30개씩</option>
+							</select>
+						</span>
+					</span>
+				</div>
+				<table class="list_table">
+					<colgroup>
+						<col width="40">
+						<col width="80">
+						<col width="150">
+						<col width="150">
+						<col width="80">
+						<col width="80">
+						<col width="80">
+					</colgroup>
+					<thead>
+					<tr>
+						<th>
+							<label>
+								<input type="checkbox" name="all_chk" onclick="toggleCheckAll(this)">
+							</label>
+						</th>
+						<th>아이디 / 이름</th>
+						<th>핸드폰번호</th>
+						<?php if($type != 3){?>
+						<th>주소</th>
+						<th>회원타입</th>
+						<?php } ?>
+						<th>최근접속일</th>
+						<th>등록일</th>
+					</tr>
+					</thead>
+					<tbody id="memberList">
+					</tbody>
+				</table>
+			</div>
+			<div class="page_group">
+				<ul class="page_box pagingGroup">
+				</ul>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+<script src="/manager/member/js/index.js"></script>
+<script src="/manager/common/js/common.js"></script>
+</html>
