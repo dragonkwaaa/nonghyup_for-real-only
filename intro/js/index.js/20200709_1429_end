@@ -1,0 +1,235 @@
+$(document).ready(function(){
+	get_main();
+});
+
+// 메인배너, 정기배송(10), 묶음배송(10)
+function get_main(){
+	let token 					=	$('input[name="token"]').val();
+	$('#banner1').html('');
+	$('#banner2').html('');
+	$('#banner3').html('');
+
+
+	$('#regular').html('');
+	$('#bundle').html('');
+
+	let url 					=	'/intro/event/index_get_main';
+	let dataType 				=	'json';
+	let param 					=	{
+		token					:	token
+	};
+	postService(url, dataType, param, function(data){
+		let banner1 			=	data.banner1;
+		let banner2 			=	data.banner2;
+		let banner3 			=	data.banner3;
+
+		let banner1_m 			=	data.banner1_m;
+
+		let regular 			=	data.regular;
+		let bundle 				=	data.bundle;
+
+		let popup 				=	data.popup;
+
+		let str0 				=	'';
+		let str0_m				=	'';
+		if(banner1.length){
+			for(var i = 0 ; i < banner1.length ; i ++){
+				let ban1 		=	banner1[i];
+				str0 			+=	'<div class="sliderImgSingle">';
+				str0 			+=		'<a href="'+ban1.bannerUrl+'">';
+				str0 			+=			'<img class="slideImg" src="'+ban1.bannerImg+'">';
+				str0 			+=		'</a>';
+				str0 			+=	'</div>';
+			}
+		}
+		$('#banner1').html(str0);
+		// :: 페이지 상단 대형 이미지 슬라이드 (웹 버전)
+		$('.mainImgSlider.webViewGroup').slick({
+			dots:true,
+			prevArrow:false,
+			nextArrow:false,
+			autoplay : true,
+			autoplaySpeed : 5000,
+		});
+		if(banner1_m.length){
+			for(var i = 0 ; i < banner1_m.length ; i ++){
+				let ban1_m 		=	banner1_m[i];
+				str0_m 			+=	'<div class="sliderImgSingle">';
+				str0_m			+=	'	<a href="'+ban1_m.bannerUrl+'">';
+				str0_m			+=	'		<img src="'+ban1_m.bannerImg+'" class="slideImg">';
+				str0_m			+=	'	</a>';
+				str0_m			+=	'</div>';
+	
+			}
+		}
+		$('#banner1_m').html(str0_m);
+		// :: 페이지 상단 대형 이미지 슬라이드 (모바일 버전)
+		$('.mainImgSlider.mobileViewGroup').slick({
+			dots:true,
+			prevArrow:false,
+			nextArrow:false,
+			autoplay : true,
+			autoplaySpeed : 55000,
+			dotsClass: 'custom_paging',
+			customPaging: function (slider, i) {
+		        console.log(slider);
+		        return  (i + 1) + '/' + slider.slideCount;
+		    }
+		});
+		
+
+		let str1 				=	'';
+		if(banner2.length){
+				let ban2 		=	banner2[0];
+				str1 			+=	'<a href="'+ban2.bannerUrl+'">';
+				str1 			+=		'<img src="'+ban2.bannerImg+'" class="bannerImg">';
+				str1 			+=	'</a>';
+				if(banner3.length){
+					let ban3 		=	banner3[0];
+					str1 			+=	'<a href="'+ban3.bannerUrl+'">';
+					str1 			+=		'<img src="'+ban3.bannerImg+'" class="bannerImg">';
+					str1 			+=	'</a>';
+				}
+		}
+		$('#banner2').html(str1);
+
+		let str2 				=	'';
+		if(regular.length){
+			$.each(regular, function(index, re) {
+				str2 			+=	'<li>';
+				// str2 			+=	'	<div class="ratioImgBox">';
+				// str2 			+=	'		<img src="'+re.goodsImg1+'" class="listImg absoluteL">';
+				// str2 			+=	'	</div>';
+
+				// :: <img> 가 2개 이상일 때 슬라이드 기능 작동함.
+				str2			+=	'	<div class="ratioImgBox goodsListSort">';
+				str2			+=	'		<div class="absoluteL">';
+				str2			+=	'			<div class="sliderCase">';
+				str2			+=	'				<img src="'+re.goodsImg1+'" class="listImg">';
+				str2			+=	'			</div>';
+				str2			+=	'		</div>';
+				str2			+=	'	</div>';
+
+				str2 			+=	'	<div class="goodsTitle">'+re.goodsName+'</div>';
+				str2 			+=	'	<div class="goodsPriceInfo relative">';
+				str2 			+=	'		<span class="calculatedPrice">'+numberWithCommas(re.goodsPrice)+'원</span>';
+				if(parseInt(re.goodsOriginPrice) > 0){
+					str2 			+=	'		<span class="originalPrice">'+numberWithCommas(re.goodsOriginPrice)+'원</span>';
+				}
+				if(parseInt(re.goodsSaleRatio) > 0){
+					str2 			+=	'		<span class="discountAmount f_red absoluteR">'+re.goodsSaleRatio+'%</span>';
+				}
+				str2 			+=	'	</div>';
+				str2 			+=	'	<a href="/product/info?code='+re.goodsCode+'&type=1" class="cardboxLinkFilter"></a>';
+				str2 			+=	'</li>';
+
+			});
+		} else {
+
+		}
+		$('#regular').html(str2);
+		// :: 상품 이미지 슬라이드
+		$('.ratioImgBox.goodsListSort .sliderCase').slick({
+			dots:false,
+			prevArrow:false,
+			nextArrow:false,
+			autoplay : true,
+			autoplaySpeed : 5000
+		});
+
+
+
+		let str3 				=	'';
+		if(bundle.length){
+			$.each(bundle, function(index, bd) {
+				str3 			+=	'<li>';
+				str3 			+=	'	<div class="ratioImgBox">';
+				str3 			+=	'		<img src="'+bd.goodsImg1+'" class="listImg absoluteL">';
+				str3 			+=	'	</div>';
+				str3 			+=	'	<div class="goodsTitle">'+bd.goodsName+'</div>';
+				str3 			+=	'	<div class="goodsPriceInfo relative">';
+				str3 			+=	'		<span class="calculatedPrice">'+numberWithCommas(bd.goodsPrice)+'원</span>';
+				if(parseInt(bd.goodsOrigionPrice) > 0){
+					str3 			+=	'		<span class="originalPrice">'+numberWithCommas(bd.goodsOrigionPrice)+'원</span>';
+				}
+				if(parseInt(bd.goodsSaleRatio) > 0){
+					str3 			+=	'		<span class="discountAmount f_red absoluteR">'+bd.goodsSaleRatio+'%</span>';
+				}
+				str3 			+=	'	</div>';
+				str3 			+=	'	<a href="/product/info?code='+bd.goodsCode+'&type=2" class="cardboxLinkFilter"></a>';
+				str3 			+=	'</li>';
+
+			});
+		} else {
+
+		}
+		$('#bundle').html(str3);
+
+
+		let popupStr 				=	'';
+		if(getCookie('isCloseToday') != 1){
+			if(popup.bbsFile1){
+                popupStr 				+=	'	<div class="imgBox">';
+                popupStr 				+=	'		<a href="javascript:void(0);">';
+                popupStr 				+=	'		    <img src="'+popup.bbsFile1+'">';
+                popupStr 				+=	'		</a>';
+				popupStr 				+=	'	</div>';
+				popupStr 				+=	'	<div class="bottomCon">';
+				popupStr 				+=	'		<div class="dailyCheckGroup">';
+				popupStr 				+=	'			<label>';
+				popupStr 				+=	'				<input type="checkbox" name="isCloseToday" value="1">';
+				popupStr 				+=	'				<span class="f_semiBold">오늘 하루 그만 보기</span>';
+				popupStr 				+=	'			</label>';
+				popupStr 				+=	'		</div>';
+				popupStr 				+=	'		<a href="javascript:closePopup();" class="closePopBtn absoluteR">닫기</a>';
+				popupStr 				+=	'	</div>';
+				$('#popup').html(popupStr);
+			}
+		}
+	});
+
+}
+
+function closePopup(){
+	if($("input:checkbox[name='isCloseToday']").is(":checked") == true){
+		setCookie('isCloseToday', 1, 1);
+		console.log('asdf');
+	}
+
+	$('.popup').hide();
+	$('.container').removeClass('overlay');
+}
+
+
+// :: 페이지 상단 대형 이미지 슬라이드 (모바일 버전)
+// $('.mainImgSlider.mobileViewGroup').slick({
+// 	dots:true,
+// 	prevArrow:false,
+// 	nextArrow:false,
+// 	autoplay : true,
+// 	autoplaySpeed : 55000,
+// 	dotsClass: 'custom_paging',
+// 	customPaging: function (slider, i) {
+//         console.log(slider);
+//         return  (i + 1) + '/' + slider.slideCount;
+//     }
+// });
+// :: ksg_20200329_1548 close 
+
+
+// :: 팝업 드래그 가능하게 하는 스크립트.
+// $(document).ready(function(){
+// 	$('.popup.dailyPop').draggable({ 
+//         containment: "window",
+//         cursor : "move"
+//     });
+// });
+
+
+$(document).ready(function(){
+	$('.popup.dailyPop').draggable({ 
+        containment: "window",
+        cursor : "move",
+        distance: 50 
+    });
+});
