@@ -53,7 +53,9 @@ body{
 .popup {
 	display : none;
 	position : absolute;
-	min-width : 600px;
+    min-width : 600px;
+    max-height : 550px;
+    overflow-y : auto;
     top:50%;
 	left:50%;
 	transform : translate(-50%, -50%);
@@ -1379,5 +1381,12 @@ select::-ms-expand {
 }
 .list_field.firCate tr.activated {
     background-color : beige;
+}
+.popup.partialItemPop {
+    max-width : 450px;
+    transform : none;
+    -webkit-transform : none;
+    top : auto;
+    left : auto;
 }
 /* :: ksg_20200714_1038 close */
