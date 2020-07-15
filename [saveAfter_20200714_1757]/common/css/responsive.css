@@ -2076,7 +2076,8 @@
 	}
 
 	.bundleInsideList li:nth-child(n+2) {
-		margin-left : 4.167vw;
+        /* margin-left : 4.167vw; */
+        margin-left : 4.167vw;
 	}
 	.bundleInsideList li {
 		width: calc(50% - 2.083vw);
@@ -3169,6 +3170,13 @@
     }
 
     /* :: ksg_20200709_1337 close */
+
+    /* :: ksg_20200715_1710 open */
+    .prdtBody .rightFloat.mobileViewGroup.mMoveTop {
+        bottom : 30vw;
+    }
+    /* :: ksg_20200715_1710 close */
+
 
 }
 
