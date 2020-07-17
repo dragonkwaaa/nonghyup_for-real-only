@@ -1517,7 +1517,7 @@
 	}
 	.menuBoxMainCon .cardBox {
         /* width : 39.833vw; */
-        width : calc(48% - 2px);
+        width : calc(48% - 3px);
 		height : 39.833vw;
 		border: solid 1px #e3e3e3;
 		position : relative;
@@ -2776,10 +2776,12 @@
     /* :: ksg_20200630_1712 open */
     .popup.dailyPop {
         display : none;
-        left : 10px;
+        left : 50%;
+        transform : translateX(-50%);
+        -webkit-transform : translateX(-50%);
         top : 100px;
-        width : auto;
-        max-width : calc(100% - 40px);
+        width : calc(100% - 40px);
+        max-width : 600px;
     }
     .popup.dailyPop .bottomCon .closePopBtn {
         font-size: 3.621vw;
@@ -3176,6 +3178,14 @@
         bottom : 30vw;
     }
     /* :: ksg_20200715_1710 close */
+
+
+    /* :: ksg_20200716_1743 open  */
+    li.mobileViewGroup {
+        display : block;
+    }
+    /* :: ksg_20200716_1743 close  */
+
 
 
 }

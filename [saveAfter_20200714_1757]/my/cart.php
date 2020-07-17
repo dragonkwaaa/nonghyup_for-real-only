@@ -26,8 +26,12 @@ $pno					=	(int)$SubFunction->allTags($_GET['pno'])	?	(int)$SubFunction->allTags
 
 		<div class="section cartSect">
 			<form name="frm" id="frm" onkeypress="if(event.keyCode==13) {document.frm.submit(); return false;}">
-			<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
-			<input type="hidden" name="isRegular" value="<?=$isRegular?>">
+				<input type="hidden" name="token" value="<?=$_SESSION['token'][$Common->nowPage()]?>">
+				<input type="hidden" name="isRegular" value="0">
+				<input type="hidden" name="orgAmount" value="0">
+				<input type="hidden" name="amount" value="0">
+				<input type="hidden" name="payMethod" value="0">
+				<input type="hidden" name="directOrder" value="0">
 			<div class="mainTitle">장바구니</div>
 			<!-- 정기배송/일반배송 탭 선택지 파트 -->
 			<ul class="findPageTab deliveryTypeTab">

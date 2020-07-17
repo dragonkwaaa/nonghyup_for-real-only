@@ -7,7 +7,7 @@ $(document).ready(function(){
 function get_cart(type){
 	let token 				=	$('input[name="token"]').val();
 	let isRegular 			=	$('input[name="isRegular"]').val();
-
+	$('input[name="isRegular"]').val(type);
 
 	let url					=	'/my/event/cart_get_cart';
 	let dataType			=	'json';
@@ -30,18 +30,21 @@ function get_cart(type){
 		let list 			=	'';
 		let totalCount 		=	'';
 
+		$('#buyButton').show();
+		$('#checkSel').show();
+		$('#buttonSel').show();
 		if(type == 1){
 			list			=	regular;
 			totalCount 		=	regularTot;
 			$('#regularCart').addClass('activated');
 			$('#notRegularCart').removeClass('activated');
-			$('#buyButton').hide();
+			$('#buyButton').prop('href', "javascript:set_cart_fix()");
 		} else {
 			list 			=	notRegular;
 			totalCount 		=	notRegularTot;
 			$('#regularCart').removeClass('activated');
 			$('#notRegularCart').addClass('activated');
-			$('#buyButton').show();
+			$('#buyButton').prop('href', "javascript:set_order()");
 		}
 
 		if(userRegular != 1){
@@ -62,8 +65,19 @@ function get_cart(type){
 					perGoodsPrice		=	opPrice;
 					goods.goodsPrice 	=	0;
 				}
+
+				let isFixStr 		=	'';
+				if(cart.isFix == 1){
+					isFixStr 		=	' (구매확정)';
+				}
 			str			+=		'<li>';
-			str			+=		'	<div class="segmentHeadLine f12">'+goods.goodsName+'</div>';
+            // str			+=		'	<div class="segmentHeadLine f12">'+goods.goodsName+' '+isFixStr+'</div>';
+
+            str			+=		'	<div class="segmentHeadLine f12">';
+            str			+=		'       <span>'+goods.goodsName+'</span>';
+            str			+=		'       <span class="confirmedMark">'+isFixStr+'</span>';
+            str			+=		'   </div>';
+
 			str			+=		'	<div class="segmentTop">';
 			str			+=		'		<label>';
 			str			+=		'			<input type="checkbox" name="cartCode[]" value="'+cart.cartCode+'" checked onchange="calculation();">';
@@ -120,9 +134,9 @@ function get_cart(type){
 			str			+=		'	<a href="/" class="rimlessBtn">쇼핑하러 가기</a>';
 			str			+=		'</div>';
 
-			$('#checkSel').remove();
-			$('#buttonSel').remove();
-			$('#buyButton').remove();
+			$('#checkSel').hide();
+			$('#buttonSel').hide();
+			$('#buyButton').hide();
 		}
 
 		$('.goodsList').html(str);
@@ -227,6 +241,9 @@ function calculation(){
 	$('#cartNum').html('(상품'+i+'개)');
 	$('#totalPrice').html(numberWithCommas(totalPrice));
 	$('#orderPrice').html(numberWithCommas(totalPrice));
+
+	$('input[name="amount"]').val(totalPrice);
+	$('input[name="orgAmount"]').val(totalPrice);
 	//$('#discountPrice').html(numberWithCommas(totalDiscount));
 }
 
@@ -289,8 +306,7 @@ function checkMobile(chkType){
 	return chkType;
 }
 
-
-function set_order(){
+function set_regularOrder(){
 	let cartCode 				=	[]
 	$('input:checkbox[name="cartCode[]"]').each(function() {
 		if(this.checked){								//checked 처리된 항목의 값
@@ -301,13 +317,50 @@ function set_order(){
 	let form				=   document.querySelector("#frm");
 	let postData			=   new FormData(form);
 
-	let url					=	'/order/event/orderReg_before_order';
+	let url					=	'/order/event/orderReg_insert_order';
 	let dataType			=	'json';
 	let param				= 	postData;
 	let formType			=	1;
 	postService(url, dataType, param, '', formType);
 
 }
+
+function set_order(){
+	let cartCode 				=	[]
+	$('input:checkbox[name="cartCode[]"]').each(function() {
+		if(this.checked){								//checked 처리된 항목의 값
+			cartCode.push(this.value);
+		}
+	});
+
+	let url 				=	'/order/event/orderReg_before_order';
+
+	let form				=   document.querySelector("#frm");
+	let postData			=   new FormData(form);
+
+	let dataType			=	'json';
+	let param				= 	postData;
+	let formType			=	1;
+	postService(url, dataType, param, '', formType);
+
+}
+
+function set_cart_fix(){
+	let cartCode 			=	[]
+
+	$("input[name='cartCode[]']:checked").each(function(i){
+		cartCode.push($(this).val());
+	});
+
+	let url 				=	'/my/event/cart_set_fix';
+	let dataType			=	'json';
+	let param				= 	{
+		cartCode				:	cartCode
+	};
+
+	postService(url, dataType, param, '', '');
+}
+/*
 
 function set_regularOrder(){
 	let cartCode 				=	[]
@@ -326,4 +379,4 @@ function set_regularOrder(){
 	let formType			=	1;
 	postService(url, dataType, param, '', formType);
 
-}
+}*/

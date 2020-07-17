@@ -291,7 +291,8 @@ function bankRequest(){
 	let AccountBankNo 		=	$('input[name="AccountBankNo"]');
 	let AccountNo 			=	$('input[name="AccountNo"]');
 	let AccountName 		=	$('input[name="AccountName"]');
-	let idNo 				=	$('input[name="idNo"]');
+	let idNo 				=	$('input[name="bank_IDNo"]');
+	let HPNo 				=	$('input[name="HPNo"]');
 
 	if(!AccountBank.val().trim()){
 		alert('은행을 선택해주세요.');
@@ -313,23 +314,27 @@ function bankRequest(){
 		idNo.focus();
 		return;
 	}
+	if(!HPNo.val().trim()){
+		alert('예금주 전화번호를 입력해주세요.');
+		HPNo.focus();
+		return;
+	}
 	if($("input:checkbox[name='checkOrg']").is(":checked") == true){
 		checkOrg 			=	1;
 	}
 
-	let url 				=	'/common/event/insert_pay_bank';
-	if(checkOrg == 1){
-		 url 				=	'/common/event/myRegular_set_bank';
-	}
+	 url 					=	'/my/event/myRegular_set_bank';
+
 	let dataType 			=	'json';
 	let param 				=	{
 		userCode 			:	$('input[name="userCode"]').val(),
-		payMethod 			:	$('input[name="payMethod"]').val(),
+		payMethod 			:	2,
 		AccountBank 		:	$('input[name="AccountBank"]').val(),
 		AccountBankNo 	 	:	$('input[name="AccountBankNo"]').val(),
 		AccountNo 			:	$('input[name="AccountNo"]').val(),
 		AccountName 		:	$('input[name="AccountName"]').val(),
-		idNo 				:	$('input[name="idNo"]').val(),
+		IDNo 				:	$('input[name="bank_IDNo"]').val(),
+		HPNo 				:	$('input[name="HPNo"]').val(),
 		checkOrg 			:	checkOrg
 	};
 
