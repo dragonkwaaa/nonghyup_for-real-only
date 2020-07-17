@@ -572,6 +572,7 @@ $('.goodsSpecSlider').on('beforeChange', function (event, slick, currentSlide, n
 $(document).on('click', '.openSlideBottomBtn', function(){
 	$('.goodsBuyInfoGroup').addClass('activated');
     $('.openSlideBottomBtn').addClass('hide');
+    $('.rimlessBtn.buyPopBtn.orderBtn').addClass('linkable');
 	$('.goodsBuyInfoGroup.activated').slideDown(400);
 	$('.container').addClass('bottomOverlay');
 });
@@ -581,6 +582,7 @@ $(document).on('click', '.slideBottomCloseBtn', function(){
 	
 	$('.goodsBuyInfoGroup').slideUp(400);
 	$('.goodsBuyInfoGroup').removeClass('activated');
+    $('.rimlessBtn.buyPopBtn.orderBtn').removeClass('linkable');
     $('.openSlideBottomBtn').removeClass('hide');
 	$('.container').removeClass('bottomOverlay');
 });
