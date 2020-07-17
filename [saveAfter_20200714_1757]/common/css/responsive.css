@@ -2212,11 +2212,11 @@
 	.section.goodsSect .infoGroup.inquiryGroup .infoList li .noticeListTitle span.titleMain {
 		width : auto;
 	}
-	.section.goodsSect .infoGroup.inquiryGroup .infoList li .noticeListTitle span.titleMain.ml30 {
+	/* .section.goodsSect .infoGroup.inquiryGroup .infoList li .noticeListTitle span.titleMain.ml30 {
 		margin-left : 5.556vw;
 		position : initial;
 		transform : none;
-	}
+	} */
 	.section.goodsSect .infoGroup.inquiryGroup .infoList li .noticeListTitle span.absoluteR {
 		display : block;
 		margin-top : 0.694vw;
@@ -3232,6 +3232,20 @@
         background: url(/common/img/iconArrowUp.png) no-repeat center / 2.500vw 1.389vw;
         text-align: center;
         vertical-align: middle;
+    }
+    .section.goodsSect .infoGroup.inquiryGroup .infoList li .noticeListTitle span.titleMain.ml30 {
+        margin-left : 5.556vw;
+        width : calc(100% - 30vw);
+		position : initial;
+        transform : none;
+        display: -webkit-inline-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .bundleInsideList li .mt20.f24.f_bold {
+        min-height: 6.222vw;
     }
     /* :: ksg_20200717_1722 close  */
 

@@ -1687,10 +1687,10 @@ ul li.infoGroup.inquiryGroup {
 .inquirySpec .inquiryMark.absoluteL {
 	left : 41px;
 }
-.infoGroup .infoList li .noticeListTitle span.titleMain {
+/* .infoGroup .infoList li .noticeListTitle span.titleMain {
 	width : 470px;
 	display : inline-block;
-}
+} */
 .infoGroup.inquiryGroup .infoList li {
 	padding : 0;
 }
@@ -2656,8 +2656,27 @@ li.mobileViewGroup {
     line-height : 29px;
     height : 29px;
 }
-
-
-
+.infoGroup .infoList li .noticeListTitle span.titleMain {
+	width : 470px;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.inquiryGroup a.noticeListTitle * {
+    vertical-align : middle;
+}
+.goodsTop .textGroup .goodsInfo.opControlGroup .singleOptionBox > span:first-child {
+    width : calc(100% - 300px);
+}
+.bundleInsideList li .mt20.f24.f_bold {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height : 47px;
+}
 
 /* :: ksg_20200717_1729 close */
