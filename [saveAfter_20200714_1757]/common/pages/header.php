@@ -1,12 +1,19 @@
 
 <div class="webTopLine">
 	<div class="webTopCase">
+
 		<?php if($User->userCode()){ ?>
 		<a href="/intro/event/index_logOut" class="btn webtopSort">로그아웃</a>
 		<?php } else { ?>
 			<a href="/intro/login" class="btn webtopSort">로그인</a>
 			<a href="/intro/join" class="btn webtopSort">회원가입</a>
 		<?php } ?>
+
+
+        <a href="/intro/event/index_logOut" class="btn webtopSort">마이페이지</a>
+        <a href="/intro/event/index_logOut" class="btn webtopSort">장바구니</a>
+
+
 	</div>
 </div>
 <header>

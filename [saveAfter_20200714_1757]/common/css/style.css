@@ -1320,10 +1320,10 @@ a.noticeListTitle {
 }
 
 
-.goodsInfo.opControlGroup .quantityBox a,
+/* .goodsInfo.opControlGroup .quantityBox a,
 .goodsInfo.opControlGroup .quantityBox input {
 	line-height : 29px;
-}
+} */
 .goodsInfo.opControlGroup .quantityBox a.decreaseIcon {
 	margin-right : -3px;
 }
@@ -1957,7 +1957,8 @@ ul.findPageTab.goodsInfoTypeTab.goodsSpecGroup {
 	font-size : 0;
 }
 .menuBoxMainCon .cardBox {
-	width : 272px;
+    /* width : 272px; */
+    width : 271px;
 	height :272px;
 	border: solid 1px #e3e3e3;
 	display : inline-block;
@@ -2637,3 +2638,26 @@ input[type=checkbox] + span.checkTxtLong {
 	margin-top : 50px;
 }
 /* :: ksg_20200715_1751 close */
+
+/* :: ksg_20200716_1743 open  */
+li.mobileViewGroup {
+    display : none;
+}
+/* :: ksg_20200716_1743 close  */
+
+
+/* :: ksg_20200717_1729 open */
+.confirmedMark {
+    float : right;
+    color : #fb376a;
+}
+.goodsInfo.opControlGroup .quantityBox a,
+.goodsInfo.opControlGroup .quantityBox input {
+    line-height : 29px;
+    height : 29px;
+}
+
+
+
+
+/* :: ksg_20200717_1729 close */

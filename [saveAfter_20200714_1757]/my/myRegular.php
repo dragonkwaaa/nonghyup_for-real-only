@@ -227,7 +227,8 @@ if(!$User->userCode()){
 				</span>
 				<input class="tbox displayer onlyNum" placeholder="계좌번호를 입력해주세요." name="AccountNo" id="bankNumSel"/>
 				<input class="tbox displayer" placeholder="예금주명을 입력해주세요." name="AccountName" id="AccountName"/>
-				<input class="tbox displayer" placeholder="예금주 생년월일 앞 6자리 또는 사업자 번호 10자리" name="idNo" id="idNo"/>
+				<input class="tbox displayer" placeholder="예금주 생년월일 앞 6자리 또는 사업자 번호 10자리" name="bank_IDNo" id="idNo"/>
+				<input class="tbox displayer" placeholder="예금주 전화번호를 입력해주세요" name="HPNo" id="HPNo"/>
 			</div>
 		</li>
 		<li>
