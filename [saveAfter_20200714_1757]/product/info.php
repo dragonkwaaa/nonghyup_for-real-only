@@ -183,6 +183,14 @@ if(!$code){
 
 				<!-- :: 모바일 하단 상품 구매 슬라이드 파트 open -->
 				<div class="textGroup mobilePurchaseGroup">
+
+
+                    <a href="javascript:void(0);" class="openSlideBottomBtn">
+				    	<i></i>
+				    </a>
+
+
+
 					<div class="goodsBuyInfoGroup">
 						<a href="javascript:void(0);" class="slideBottomCloseBtn bundleSlideMod">
 							<i></i>
@@ -230,12 +238,13 @@ if(!$code){
 						<!--	<?php /*if($type != 1){ */?>
 								<a href="javascript:void(0);" class="plainBtn halfSort rightSort">바로구매</a>
 							--><?php /*} */?>
-                            <a href="javascript:set_cart();" class="rimlessBtn <?php if($type != 1){ ?>halfSort<?php } ?> leftSort">장바구니</a>
+                            <!-- <a href="javascript:set_cart();" class="rimlessBtn <?php if($type != 1){ ?>halfSort<?php } ?> leftSort">장바구니</a> -->
 						    
                         </div>
 					</div>
 					<div class="btnGroup">
-						<a href="javascript:void(0)" class="rimlessBtn buyPopBtn orderBtn">구매하기</a>
+						<!-- <a href="javascript:void(0)" class="rimlessBtn buyPopBtn orderBtn">장바구니</a> -->
+                        <a href="javascript:void(0)" class="rimlessBtn buyPopBtn orderBtn">장바구니</a>
 						<a href="javascript:set_favorite()" class="script_favorite rimlessBtn favoriteBtn">
 							<i class="heartIcon"></i>
 						</a>
@@ -559,9 +568,10 @@ $('.goodsSpecSlider').on('beforeChange', function (event, slick, currentSlide, n
 	$('.script_thumbnail .slick-slide').eq(mySlideNumber).addClass('activated');
 });
 
-// :: 모바일 구매하기 버튼 클릭 시 하단 내용 표시
-$(document).on('click', '.rimlessBtn.buyPopBtn', function(){
+// :: 모바일 화살표 꼬다리 버튼 클릭 시 하단 내용 표시
+$(document).on('click', '.openSlideBottomBtn', function(){
 	$('.goodsBuyInfoGroup').addClass('activated');
+    $('.openSlideBottomBtn').addClass('hide');
 	$('.goodsBuyInfoGroup.activated').slideDown(400);
 	$('.container').addClass('bottomOverlay');
 });
@@ -571,6 +581,7 @@ $(document).on('click', '.slideBottomCloseBtn', function(){
 	
 	$('.goodsBuyInfoGroup').slideUp(400);
 	$('.goodsBuyInfoGroup').removeClass('activated');
+    $('.openSlideBottomBtn').removeClass('hide');
 	$('.container').removeClass('bottomOverlay');
 });
 

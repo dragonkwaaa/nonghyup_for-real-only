@@ -2353,27 +2353,27 @@
 		width : 27.639vw;
 		font-size : 0;
 	}
-	.section.goodsSect .goodsTop .textGroup .goodsInfo.opControlGroup .quantityBox a, 
+	/* .section.goodsSect .goodsTop .textGroup .goodsInfo.opControlGroup .quantityBox a, 
 	.section.goodsSect .goodsTop .textGroup .goodsInfo.opControlGroup .quantityBox input {
 		line-height : 6.667vw;
-	}
+	} */
 	.section.goodsSect .goodsTop .textGroup .goodsInfo.opControlGroup .quantityBox a.decreaseIcon {
 		margin-right : -0.972vw;
 	}
 	.section.goodsSect .goodsTop .textGroup .quantityBox a.decreaseIcon {
 		border: 0.139vw solid #b3b3b3;
 	}
-	.section.goodsSect .goodsTop .textGroup .goodsInfo .quantityBox + span {
+	/* .section.goodsSect .goodsTop .textGroup .goodsInfo .quantityBox + span {
 		font-size : 3.611vw;
 		margin-left : 4.167vw;
-	}
-	.section.goodsSect .goodsInfo.opControlGroup .rimlessBtn {
+	} */
+	/* .section.goodsSect .goodsInfo.opControlGroup .rimlessBtn {
 		width : 12.500vw;
 		padding : 1.667vw 0;
 		text-align : center;
 		margin-left : 4.167vw;
 		font-size : 3.611vw;
-	}
+	} */
 	.goodsTop .textGroup .goodsInfo.opControlGroup .singleOptionBox + .singleOptionBox {
 		margin-top : 5vw;
 	}
@@ -3185,6 +3185,59 @@
         display : block;
     }
     /* :: ksg_20200716_1743 close  */
+
+
+    /* :: ksg_20200717_1722 open  */
+	.section.goodsSect .goodsTop .textGroup .goodsInfo .quantityBox + span {
+		font-size : 3.611vw;
+        margin-left : 2.167vw;
+        width : 16vw;
+        text-align : right;
+    }
+    .section.goodsSect .goodsInfo.opControlGroup .rimlessBtn {
+		width : 12.500vw;
+		padding : 1.667vw 0;
+		text-align : center;
+		margin-left : 3.167vw;
+		font-size : 3.611vw;
+    }
+    .section.goodsSect .goodsTop .textGroup .goodsInfo.opControlGroup .quantityBox a, 
+	.section.goodsSect .goodsTop .textGroup .goodsInfo.opControlGroup .quantityBox input {
+        line-height : 6.667vw;
+        height : 6.667vw;
+    }
+    
+
+    .openSlideBottomBtn {
+        position: absolute;
+        /* top: -11.250vw; */
+        top: -7.25vw;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        width: 15.278vw;
+        height: 6.944vw;
+        background-color: #fff;
+        border-top: 0.139vw solid #bababa;
+        border-left: 0.139vw solid #bababa;
+        border-right: 0.139vw solid #bababa;
+        border-radius: 5px 5px 0 0;
+    }
+    /* .openSlideBottomBtn.hide {
+        display : none;
+    } */
+    .openSlideBottomBtn i {
+        width: 15.278vw;
+        height: 6.944vw;
+        background: url(/common/img/iconArrowUp.png) no-repeat center / 2.500vw 1.389vw;
+        text-align: center;
+        vertical-align: middle;
+    }
+    /* :: ksg_20200717_1722 close  */
+
+
+
+
 
 
 

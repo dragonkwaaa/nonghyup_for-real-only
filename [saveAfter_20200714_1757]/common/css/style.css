@@ -1320,10 +1320,10 @@ a.noticeListTitle {
 }
 
 
-.goodsInfo.opControlGroup .quantityBox a,
+/* .goodsInfo.opControlGroup .quantityBox a,
 .goodsInfo.opControlGroup .quantityBox input {
 	line-height : 29px;
-}
+} */
 .goodsInfo.opControlGroup .quantityBox a.decreaseIcon {
 	margin-right : -3px;
 }
@@ -2646,7 +2646,18 @@ li.mobileViewGroup {
 /* :: ksg_20200716_1743 close  */
 
 
+/* :: ksg_20200717_1729 open */
 .confirmedMark {
     float : right;
     color : #fb376a;
 }
+.goodsInfo.opControlGroup .quantityBox a,
+.goodsInfo.opControlGroup .quantityBox input {
+    line-height : 29px;
+    height : 29px;
+}
+
+
+
+
+/* :: ksg_20200717_1729 close */
