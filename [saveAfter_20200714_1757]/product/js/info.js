@@ -178,8 +178,9 @@ function get_goods(){
 				selOpStr1				+=	'		<input type="hidden" name="opPrice[]" value="'+cOp.opPrice+'" id="opPrice'+cOp.goodsOpIdx+'">';
 				selOpStr1				+=	'		<input type="hidden" name="opIdx[]" value="'+cOp.goodsOpIdx+'">';
 				selOpStr1				+=	'		<input type="hidden" name="opQty[]" value="'+cOp.cartQty+'" id="tempQty'+cOp.goodsOpIdx+'">';
+				selOpStr1				+=	'		<input type="hidden" value="'+cOp.cartQty+'" id="beforeQty'+cOp.goodsOpIdx+'">';
 
-				selOpStr1				+=	'		<a href="javascript:deleteOp('+cOp.goodsOpIdx+');" class="rimlessBtn">삭제</a>';
+				selOpStr1				+=	'		<a href="javascript:deleteOp('+cOp.goodsOpIdx+','+cOp.cartCode+', 1);" class="rimlessBtn">삭제</a>';
 				selOpStr1				+=	'	</div>';
 				selOpStr1				+=	'</div>';
 
@@ -194,7 +195,7 @@ function get_goods(){
 				selOpStr2 				+=		'	</span>';
 				selOpStr2 				+=		'	<div class="relative optionPriceBox">';
 				selOpStr2 				+=		'		<span>'+numberWithCommas(parseInt(cOp.opPrice + goods.goodsPrice))+'원</span>';
-				selOpStr2 				+=		'		<a href="javascript:deleteOp('+cOp.goodsOpIdx+');" class="rimlessBtn absoluteMR">삭제</a>';
+				selOpStr2 				+=		'		<a href="javascript:deleteOp('+cOp.goodsOpIdx+','+cOp.cartCode+', 1);" class="rimlessBtn absoluteMR">삭제</a>';
 				selOpStr2 				+=		'	</div>';
 				selOpStr2 				+=		'</div>';
 
@@ -202,12 +203,12 @@ function get_goods(){
 				selOpStr1_m				+=	'	<span>'+cOp.opInfo+'</span>';
 				selOpStr1_m				+=	'	<div class="absoluteMR">';
 				selOpStr1_m				+=	'		<span class="quantityBox">';
-				selOpStr1_m				+=	'			<a href="javascript:updateOpQty(1. '+cOp.goodsOpIdx+');" class="decreaseIcon">-</a>';
+				selOpStr1_m				+=	'			<a href="javascript:updateOpQty(1, '+cOp.goodsOpIdx+');" class="decreaseIcon">-</a>';
 				selOpStr1_m				+=	'			<input value="'+cOp.cartQty+'" class="quantity onlyNum" onchange="inputUpdateQty_m('+cOp.goodsOpIdx+')" id="opQty_m'+cOp.goodsOpIdx+'" maxlength="2">';
 				selOpStr1_m				+=				'<a href="javascript:updateOpQty(2, '+cOp.goodsOpIdx+');" class="increaseIcon">+</a>';
 				selOpStr1_m				+=	'		</span>';
 				selOpStr1_m				+=	'		<span class="f_bold">'+numberWithCommas(cOp.opPrice)+'원</span>';
-				selOpStr1_m				+=	'		<a href="javascript:deleteOp('+cOp.goodsOpIdx+');" class="rimlessBtn">삭제</a>';
+				selOpStr1_m				+=	'		<a href="javascript:deleteOp('+cOp.goodsOpIdx+','+cOp.cartCode+', 1);" class="rimlessBtn">삭제</a>';
 				selOpStr1_m				+=	'	</div>';
 				selOpStr1_m				+=	'</div>';
 
@@ -316,7 +317,7 @@ function setOp(opIdx){
 			selOpStr1				+=	'		<input type="hidden" name="opPrice[]" value="'+opPrice+'" id="opPrice'+opIdx+'">';
 			selOpStr1				+=	'		<input type="hidden" name="opIdx[]" value="'+opIdx+'">';
 			selOpStr1				+=	'		<input type="hidden" name="opQty[]" value="1" id="tempQty'+opIdx+'">';
-
+			selOpStr1				+=	'		<input type="hidden" value="1" id="beforeQty'+opIdx+'">';
 			selOpStr1				+=	'		<a href="javascript:deleteOp('+opIdx+');" class="rimlessBtn">삭제</a>';
 			selOpStr1				+=	'	</div>';
 			selOpStr1				+=	'</div>';
@@ -354,7 +355,7 @@ function setOp(opIdx){
 		selOpStr1				+=	'		<input type="hidden" name="opPrice[]" value="'+opPrice+'" id="opPrice'+opIdx+'">';
 		selOpStr1				+=	'		<input type="hidden" name="opIdx[]" value="'+opIdx+'">';
 		selOpStr1				+=	'		<input type="hidden" name="opQty[]" value="1" id="tempQty'+opIdx+'">';
-
+		selOpStr1				+=	'		<input type="hidden" value="1" id="beforeQty'+opIdx+'">';
 		selOpStr1				+=	'		<a href="javascript:deleteOp('+opIdx+');" class="rimlessBtn">삭제</a>';
 		selOpStr1				+=	'	</div>';
 		selOpStr1				+=	'</div>';
@@ -399,10 +400,16 @@ function setOp(opIdx){
 		updateOpQty(2, opIdx);
 		opCalculation();
 	}
+
+	$('#cartButton_m').addClass('linkable');
+	$('.goodsBuyInfoGroup').addClass('activated');
+	$('.goodsBuyInfoGroup.activated').slideDown(400);
+
 }
 
 function updateOpQty(type, opIdx){
 	var tempQty 			=	$('#tempQty'+opIdx).val();
+	//var beforeQty			=	$('#beforeQty'+opIdx).val();
 	if(type == 1){
 		if(tempQty == 1){
 			return;
@@ -413,23 +420,38 @@ function updateOpQty(type, opIdx){
 		tempVal 			=	parseInt(tempQty) + 1;
 	}
 	$('#tempQty'+opIdx).val(tempVal);
-	$('#opQty1'+opIdx).val(tempVal);
+	/*$('#opQty1'+opIdx).val(tempVal);
 	$('#opQty2'+opIdx).val(tempVal);
-	$('#opQty_m'+opIdx).val(tempVal);
-	opCalculation();
+	$('#opQty_m'+opIdx).val(tempVal);*/
+	//console.log('위에'+opIdx);
+	opCalculation(opIdx);
 }
 
-function deleteOp(opIdx){
+function deleteOp(opIdx, cartCode, type){
+
 	$('#singleOptionBox1'+opIdx).remove();
 	$('#singleOptionBox2'+opIdx).remove();
 	$('#singleOptionBox_m'+opIdx).remove();
+
 	opIdxArr.splice(opIdxArr.indexOf(opIdx), 1);
-	opCalculation();
 
 	if(opIdxArr.length == 0){
 		$('#orderOpList1').hide();
 		$('#orderOpList2').hide();
 		$('#orderOpList1_m').hide();
+	}
+
+	opCalculation();
+
+	if(type == 1){
+		let url 				=	'/product/event/info_delete_cart';
+		let dataType 			=	'json';
+		let param 				=	{
+			cartCode			:	cartCode
+		};
+
+		postService(url, dataType, param, function(data) {
+		});
 	}
 }
 
@@ -439,7 +461,7 @@ function inputUpdateQty1(opIdx){
 		tempQty				=	1;
 	}
 	$('#tempQty'+opIdx).val(tempQty);
-	opCalculation();
+	opCalculation(opIdx);
 }
 
 function inputUpdateQty2(opIdx){
@@ -448,7 +470,7 @@ function inputUpdateQty2(opIdx){
 		tempQty				=	1;
 	}
 	$('#tempQty'+opIdx).val(tempQty);
-	opCalculation();
+	opCalculation(opIdx);
 }
 
 
@@ -458,10 +480,10 @@ function inputUpdateQty_m(opIdx){
 		tempQty				=	1;
 	}
 	$('#tempQty'+opIdx).val(tempQty);
-	opCalculation();
+	opCalculation(opIdx);
 }
 
-function opCalculation(opIdx){
+function opCalculation(idx){
 
 	var type 				=	$('input[name="type"]').val();
 	var regularLimit 		=	parseInt($('input[name="regularLimit"]').val());
@@ -469,14 +491,13 @@ function opCalculation(opIdx){
 	//var price 				=	parseInt($('input[name="price"]').val());
 	var price 				=	0;
 	var opPrice 			=	0;
-	var tempQty 			=	0;
-
+	var tempQty 			=	parseInt($('#tempQty'+idx).val());
+	var beforeQty 			=	parseInt($('#beforeQty'+idx).val());
 	for(var i = 0 ; i < opIdxArr.length ; i ++){
-		opIdx 				=	opIdxArr[i];
-		opPrice				=	parseInt($('#opPrice'+opIdx).val());
-		tempQty 			=	parseInt($('#tempQty'+opIdx).val());
-		perPrice 			=	(opPrice + price) * tempQty;
-		console.log(tempQty);
+		var opIdx 			=	opIdxArr[i];
+		var opPrice			=	parseInt($('#opPrice'+opIdx).val());
+		var tmpQty 			=	parseInt($('#tempQty'+opIdx).val());
+		var perPrice 		=	(opPrice + price) * tmpQty;
 		total 				+=	perPrice;
 		/*if(opIdx > 0){
 			opPrice				=	parseInt($('#opPrice'+opIdx).val());
@@ -492,15 +513,27 @@ function opCalculation(opIdx){
 	if(type == 1){
 		if(regularLimit < total){
 			alert('정기배송금액이 초과되었습니다.');
+			tempQty 		=	beforeQty;
+			$('#tempQty'+idx).val(tempQty);
+			$('#opQty1'+idx).val(tempQty);
+			$('#opQty2'+idx).val(tempQty);
+			$('#opQty_m'+idx).val(tempQty);
 			return false;
-		}
+		} /*else {
+			$('#beforeQty'+idx).val(tempQty);
+			$('#tempQty'+idx).val(tempQty);
+			$('#opQty1'+idx).val(tempQty);
+			$('#opQty2'+idx).val(tempQty);
+			$('#opQty_m'+idx).val(tempQty);
+		}*/
 	}
 
-
+	$('#tempQty'+idx).val(tempQty);
+	$('#opQty1'+idx).val(tempQty);
+	$('#opQty2'+idx).val(tempQty);
+	$('#opQty_m'+idx).val(tempQty);
+	$('#beforeQty'+idx).val(tempQty);
 	$('input[name="total"]').val(total);
-	$('#opQty1'+opIdx).val(tempQty);
-	$('#opQty2'+opIdx).val(tempQty);
-	$('#opQty_m'+opIdx).val(tempQty);
 	$('#total1').html(numberWithCommas(total)+' 원');
 	$('#total2').html(numberWithCommas(total)+' 원');
 	$('#total_m').html(numberWithCommas(total)+' 원');
