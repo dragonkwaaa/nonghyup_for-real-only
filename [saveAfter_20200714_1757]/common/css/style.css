@@ -1440,11 +1440,21 @@ ul.findPageTab.goodsInfoTypeTab li a {
 ul.findPageTab.goodsInfoTypeTab li.activated {
 	border-bottom : 1px solid #fff;
 }
-.rightFloat.innerFloat.goodsInfoGroup .goodsSumPrice {
+
+/* :: ksg_20200720_1532 open : because : 우측 플로트 장바구니의 옵션~총 금액 간격이 너무 벌어지므로 아래에서 수정함. */
+/* .rightFloat.innerFloat.goodsInfoGroup .goodsSumPrice {
 	margin-top : 225px;
 	display : block;
 	text-align : right;
+} */
+/* :: ksg_20200720_1532 close */
+.rightFloat.innerFloat.goodsInfoGroup .goodsSumPrice {
+    margin-top : 25px;
+	display : block;
+	text-align : right;
 }
+
+
 .rightFloat.innerFloat.goodsInfoGroup .rimlessBtn.cartBtn {
 	border-radius : 5px;
 	background-color : #ffc20e;
@@ -1687,10 +1697,10 @@ ul li.infoGroup.inquiryGroup {
 .inquirySpec .inquiryMark.absoluteL {
 	left : 41px;
 }
-.infoGroup .infoList li .noticeListTitle span.titleMain {
+/* .infoGroup .infoList li .noticeListTitle span.titleMain {
 	width : 470px;
 	display : inline-block;
-}
+} */
 .infoGroup.inquiryGroup .infoList li {
 	padding : 0;
 }
@@ -2656,8 +2666,46 @@ li.mobileViewGroup {
     line-height : 29px;
     height : 29px;
 }
-
-
-
+.infoGroup .infoList li .noticeListTitle span.titleMain {
+	width : 470px;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.inquiryGroup a.noticeListTitle * {
+    vertical-align : middle;
+}
+.goodsTop .textGroup .goodsInfo.opControlGroup .singleOptionBox > span:first-child {
+    width : calc(100% - 300px);
+}
+.bundleInsideList li .mt20.f24.f_bold {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height : 47px;
+}
 
 /* :: ksg_20200717_1729 close */
+
+
+/* :: ksg_20200720_1042 open  */
+.bundleInsideList .goodsInfo {
+    min-height : auto;
+    font-size : 12px;
+}
+.bundleInsideList .goodsInfo + .goodsInfo {
+    padding-top : 5px;
+}
+.rightFloat.innerFloat.goodsInfoGroup .sbox {
+    width : 100%;
+}
+.rightFloat.innerFloat.goodsInfoGroup .sbox a {
+    width : auto;
+}
+
+
+/* :: ksg_20200720_1042 close  */

@@ -231,7 +231,7 @@ if(!$code){
 						</div>
 						<div class="goodsSumInfo">
 							<span class="f14">총 합계금액</span>
-							<span class="ml14 f24 f_red f_bold" id="total_m"></span>
+							<span class="ml14 f24 f_red f_bold" id="total_m">0 원</span>
 						</div>
 
                         <div class="insideBtnGroup">
@@ -244,7 +244,7 @@ if(!$code){
 					</div>
 					<div class="btnGroup">
 						<!-- <a href="javascript:void(0)" class="rimlessBtn buyPopBtn orderBtn">장바구니</a> -->
-                        <a href="javascript:void(0)" class="rimlessBtn buyPopBtn orderBtn">장바구니</a>
+                        <a href="javascript:set_cart()" class="rimlessBtn buyPopBtn orderBtn" id="cartButton_m">장바구니</a>
 						<a href="javascript:set_favorite()" class="script_favorite rimlessBtn favoriteBtn">
 							<i class="heartIcon"></i>
 						</a>
@@ -452,8 +452,21 @@ if(!$code){
                 </div>
                 
 
-                <!-- :: 웹 우측 하단의 장바구니 옵션 파트 -->
-                <!-- <div>
+                <!-- :: 웹 우측 하단의 장바구니 옵션 선택하는 파트 -->
+                <!-- <div class="goodsInfo selectGroup">
+					<span>옵션선택</span>
+					<span class="sbox">
+						<a href="javascript:void(0);" class="f16">상품선택</a>
+						<ul>
+                            <li>참외</li>
+                            <li>양파</li>
+                            <li>애호박</li>
+					</span>
+				</div> -->
+
+
+                <!-- :: 웹 우측 하단의 장바구니 선택된 옵션 파트 -->
+           		<!-- <div>
 					<div class="singleOptionBox">
 						<div class="optionName">옵션명</div>
 						<span class="f14">수량</span>
