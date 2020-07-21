@@ -2641,7 +2641,12 @@ input[type=checkbox] + span.checkTxtLong {
 .bundleInsideList li:nth-child(n+2) {
 	margin-left : 18px;
 }
-.bundleInsideList li:nth-child(7n-1) {
+/* :: ksg_20200721_1835 open : because : 7n을 기준으로 계산하면 중간에 잘못 적용되는 카드박스들이 있으므로, 5n을 기준으로 하도록 아래에서 변경함. */
+/* .bundleInsideList li:nth-child(7n-1) {
+	margin-left : 0;
+} */
+/* :: ksg_20200721_1835 close */
+.bundleInsideList li:nth-child(5n+1) {
 	margin-left : 0;
 }
 .bundleInsideList li:nth-child(n+6) {
