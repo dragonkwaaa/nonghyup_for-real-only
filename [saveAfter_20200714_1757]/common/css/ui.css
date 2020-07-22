@@ -26,6 +26,9 @@
 	transform : translateY(-50%);
 	-webkit-transform : translateY(-50%);
 }
+input[type=password] {
+    font-family : 'Noto Sans KR',sans-serif;
+}
 input::placeholder {
 	color : #c0c0c0;
 }
@@ -220,7 +223,13 @@ input[readonly] {
 } 
 
 
-
+.f_roboto {
+    font-family: roboto;
+}
+.f_robotoBold {
+    font-family: roboto;
+    font-weight : 800;
+}
 .f_semiBold {
 	font-weight : 500;
 }

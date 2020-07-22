@@ -57,6 +57,67 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/roboto-Black.eot');
+    src:
+    /* url('../fonts/roboto-Black.woff') format('woff'), */
+    /* url('../fonts/roboto-Black.eot?#iefix') format('embedded-opentype'),	 */
+	url('../fonts/roboto-Black.otf') format('truetype');
+	font-weight: 1000;
+	font-style: normal;
+}
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/roboto-Bold.eot');
+    src:
+    /* url('../fonts/roboto-Bold.woff') format('woff'), */
+    /* url('../fonts/roboto-Bold.eot?#iefix') format('embedded-opentype'),	 */
+	url('../fonts/roboto-Bold.otf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/roboto-Medium.eot');
+    src:
+    /* url('../fonts/roboto-Medium.woff') format('woff'), */
+    /* url('../fonts/roboto-Medium.eot?#iefix') format('embedded-opentype'),	 */
+	url('../fonts/roboto-Medium.otf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/roboto-Regular.eot');
+    src:
+    /* url('../fonts/roboto-Regular.woff') format('woff'), */
+    /* url('../fonts/roboto-Regular.eot?#iefix') format('embedded-opentype'),	 */
+	url('../fonts/roboto-Regular.otf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/roboto-Thin.eot');
+    src:
+    /* url('../fonts/roboto-Thin.woff') format('woff'), */
+    /* url('../fonts/roboto-Thin.eot?#iefix') format('embedded-opentype'),	 */
+	url('../fonts/roboto-Thin.otf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+}
+
+
 /**************************************/
 /**************************************/
 /**************************************/

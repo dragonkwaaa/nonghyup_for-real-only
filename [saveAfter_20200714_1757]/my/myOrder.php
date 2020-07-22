@@ -7,7 +7,7 @@ if(!$User->userCode()){
 	$CommonManager->goPage('/intro/login', '로그인 후, 사용가능합니다.');
 }
 $state					=	(int)$SubFunction->allTags($_GET['state'])	?	(int)$SubFunction->allTags($_GET['state'])	:	1;
-$type 					=	(int)$SubFunction->allTags($_GET['type'])	?	(int)$SubFunction->allTags($_GET['type'])	:	2;
+$type 					=	(int)$SubFunction->allTags($_GET['type'])	?	(int)$SubFunction->allTags($_GET['type'])	:	3;
 
 ?>
 
@@ -39,12 +39,15 @@ $type 					=	(int)$SubFunction->allTags($_GET['type'])	?	(int)$SubFunction->allT
 			<input type="hidden" name="type" value="" id="type">
 
 			<div class="mainTitle"></div>
-			<ul class="findPageTab deliveryTypeTab">
+			<ul class="findPageTab deliveryTypeTab orderedSort">
+				<li id="selectRegularOrder">
+					<a href="javascript:get_order(3);">이번달 정기배송</a>
+				</li>
 				<li id="regularOrder">
-					<a href="javascript:get_order(1)">정기배송</a>
+					<a href="javascript:get_order(1);">정기배송</a>
 				</li>
 				<li id="notRegularOrder">
-					<a href="javascript:get_order(2)">일반배송</a>
+					<a href="javascript:get_order(2);">일반배송</a>
 				</li>
 			</ul>
 			<!-- :: 상품 리스트 파트 -->
@@ -138,8 +141,8 @@ $type 					=	(int)$SubFunction->allTags($_GET['type'])	?	(int)$SubFunction->allT
 				</ul>
 				<!-- :: 선택 관련 버튼 파트 -->
 				<div class="btnGroup mt20">
-					<a href="javascript:codeCheckAll();" class="plainBtn">전체선택</a>
-					<a href="javascript:delete_orderList();" class="plainBtn ml7">선택삭제</a>
+					<a href="javascript:codeCheckAll();" class="plainBtn selDelete">전체선택</a>
+					<a href="javascript:delete_orderList();" class="plainBtn ml7 selDelete">선택삭제</a>
 				</div>
 				<!-- :: 페이징 파트 -->
 				<ul class="pagingGroup">

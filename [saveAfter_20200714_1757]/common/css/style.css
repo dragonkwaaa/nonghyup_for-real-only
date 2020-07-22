@@ -1908,7 +1908,8 @@ ul.findPageTab.goodsInfoTypeTab.goodsSpecGroup {
 }
 .carboxList ul li .goodsPriceInfo .calculatedPrice {
 	font-size : 24px;
-	font-weight : 600;
+    font-weight : 800;
+    font-family: roboto;
 }
 .carboxList ul li .goodsPriceInfo .originalPrice {
 	font-size : 16px;
@@ -2297,7 +2298,8 @@ ul.menuTab.topMenuSort  li a.activated {
 .corpCallNum div {
 	font-size : 22px;
 	color : #ffc20e;
-	font-weight : 600;
+    font-weight : 800;
+    font-family: roboto;
 }
 .corpCallNum .corpName {
 	font-size : 14px;
@@ -2712,5 +2714,17 @@ li.mobileViewGroup {
     width : auto;
 }
 
-
 /* :: ksg_20200720_1042 close  */
+
+
+/* :: ksg_20200721_2105 open  */
+.cardBoxTip {
+    position : absolute;
+    top : 0;
+    left : 0;
+    width : 169px;
+    height : 41px;
+    background : url('/common/img/cardBoxTip.png') no-repeat center / cover;
+    z-index : 1;
+}
+/* :: ksg_20200721_2105 close  */

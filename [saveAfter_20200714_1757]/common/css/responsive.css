@@ -296,7 +296,7 @@
 		margin-top : 2.786vw;
 	}
 	.carboxList ul li .goodsPriceInfo .calculatedPrice {
-		font-size : 4.178vw;
+        font-size : 4.178vw;
 	}
 	.carboxList ul li .goodsPriceInfo .originalPrice {
 		margin-left : 1.253vw;
@@ -3250,7 +3250,29 @@
     /* :: ksg_20200717_1722 close  */
 
 
+    /* :: ksg_20200721_2105 open  */
+    .cardBoxTip {
+        position : absolute;
+        top : 0;
+        left : 0;
+        width : 31.389vw;
+        height : 7.500vw;
+        background : url('/common/img/cardBoxTip.png') no-repeat center / cover;
+        z-index : 1;
+    }
+    /* :: ksg_20200721_2105 close  */
 
+
+    /* :: ksg_20200722_1119 open  */
+    ul.findPageTab.deliveryTypeTab.orderedSort {
+        text-align : center;
+    }
+    ul.findPageTab.deliveryTypeTab.orderedSort li,
+    ul.findPageTab.deliveryTypeTab.orderedSort li,
+    ul.findPageTab.deliveryTypeTab.orderedSort li {
+        width: calc(33.33% - 0.279vw);
+    }
+    /* :: ksg_20200722_1119 close  */
 
 
 

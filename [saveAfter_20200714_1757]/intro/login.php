@@ -43,7 +43,7 @@ print_r($User->userCode());
 												<input type="checkbox" name="autoLogin" value="1">
 												<span class="f_semiBold">자동로그인</span>
 												<div class="floatR">
-													<a href="/intro/findID" class="f_underlined f14">아이디˙비밀번호 찾기</a>
+													<a href="/intro/findID" class="f_underlined f14">아이디·비밀번호 찾기</a>
 													<a href="/intro/join" class="f_underlined f14 ml13">회원가입</a>
 												</div>
 											</label>
