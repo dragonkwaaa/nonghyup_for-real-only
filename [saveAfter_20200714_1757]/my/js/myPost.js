@@ -57,7 +57,7 @@ function get_post(){
 
 					str		+=	'<li>';
 					str		+=	'	<div class="segmentTop f16 f_bold">';
-					str		+=	'		<label>'+regDate+'</lavel>';
+					str		+=	'		<label class="f_robotoBold">'+regDate+'</lavel>';
 					str		+=	'		<a href="javascript:void(0);" class="deleteBtn absoluteR"></a>';
 					str		+=	'	</div>';
 					str		+=	'	<div class="mainCon">';
@@ -102,7 +102,7 @@ function get_post(){
 					str	+=	'<li class="relative">';
 					str	+=	'	<a href="javascript:void(0);" class="noticeSpecShow noticeListTitle">';
 					str	+=	'		<span class="ml30">'+li.subject+'</span>';
-					str	+=	'		<span class="absoluteR">'+li.regDate+'</span>';
+					str	+=	'		<span class="absoluteR f_roboto">'+li.regDate+'</span>';
 					str	+=	'	</a>';
 					str	+=	'	<div class="noticeSpecInfo questionGroup">';
 					str	+=	'		<div class="goodsInfo separatedRight relative">';

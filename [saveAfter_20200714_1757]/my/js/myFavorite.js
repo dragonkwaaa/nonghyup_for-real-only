@@ -54,7 +54,7 @@ function get_favorite(){
 				str		+=	'		<div class="goodsInfo separatedRight relative">';
 				str		+=	'			<div class="absoluteL">';
 				str		+=	'				<div class="f16 f_semiBold">'+goods.goodsName+'</div></a>';
-				str		+=	'				<div class="f20 f_semiBold mt8">'+numberWithCommas(goods.goodsPrice)+'원</div>';
+				str		+=	'				<div class="f20 f_semiBold mt8 f_robotoBold">'+numberWithCommas(goods.goodsPrice)+'원</div>';
 				str		+=	'			</div>';
 				str		+=	'		</div>';
 				str		+=	'	</div>';

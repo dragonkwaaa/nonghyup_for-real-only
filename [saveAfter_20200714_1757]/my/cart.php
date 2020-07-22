@@ -7,8 +7,6 @@ if(!$User->userCode()){
 	$CommonManager->goPage('/intro/login','로그인한 회원만 사용가능합니다.');
 }
 
-$isRegular				=	$SubFunction->allTags($_GET['re'])			?	(int)$SubFunction->allTags($_GET['re'])	:	0;
-$pno					=	(int)$SubFunction->allTags($_GET['pno'])	?	(int)$SubFunction->allTags($_GET['pno'])	:	1;
 
 ?>
 
@@ -95,7 +93,7 @@ $pno					=	(int)$SubFunction->allTags($_GET['pno'])	?	(int)$SubFunction->allTags
 		</div>
 		</form>
 	</div>
-
+	<!--<a href="javascript:set_order();">테스트버튼</a>-->
 	<!-- :: 푸터 파트 -->
 	<?php include $_SERVER['DOCUMENT_ROOT'] .  '/common/pages/footer.php';?>
 

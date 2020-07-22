@@ -53,7 +53,7 @@ function update_regularInfo(){
 	let bankName	 		=	$('input[name="bankName"]');
 	let bankAccountNum 		=	$('input[name="bankAccountNum"]');
 
-	if(isRegular == 1){
+	/*if(isRegular == 1){
 		if(!monthPeriod.val().trim()){
 			alert('정기배송 이용기간을 선택해주세요.');
 			$('#monthPeriod3').focus();
@@ -79,7 +79,7 @@ function update_regularInfo(){
 			bankAccountNum.focus();
 			return;
 		}
-	}
+	}*/
 
 	if(confirm('수정하시겠습니까?')){
 		let form				=   document.querySelector("#frm");
@@ -233,12 +233,8 @@ function update_user(){
 	let userPWD				=	$('input[name="userPWD"]');
 	let userMobile 			=	$('input[name="userMobile"]');
 	let re_userPWD			=	$('input[name="re_userPWD"]');
-	if(!userName.val().trim()){
-		alert('정기배송 이용기간을 선택해주세요.');
-		$('#userName').focus();
-		return;
-	}
-	if(!userZip.val().trim()){
+
+/*	if(!userZip.val().trim()){
 		alert('주소를 입력해주세요.');
 		userZip.focus();
 		return;
@@ -252,7 +248,7 @@ function update_user(){
 		alert('은행을 선택헤주세요.');
 		userEmail.focus();
 		return;
-	}
+	}*/
 
 	if(userPWD.val().trim()){
 		if(!userPWD.val().trim()){

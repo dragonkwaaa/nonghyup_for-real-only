@@ -33,7 +33,7 @@ $searchType 			=	$SubFunction->allTags($_GET['searchType']);
 					<a href="/my/myPost?cate=4">상품후기</a>
 				</li>
 				<li id="selTab2">
-					<a href="/my/myPost?cate=2">1:1문의</a>
+					<a href="/my/myPost?cate=2" class="f_roboto">1:1문의</a>
 				</li>
 			</ul>
 			<!-- :: 검색 파트 -->

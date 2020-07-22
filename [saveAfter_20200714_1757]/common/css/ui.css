@@ -97,6 +97,9 @@ textarea::placeholder {
 .mt7 {
 	margin-top : 7px;
 }
+.mt8 {
+	margin-top : 8px;
+}
 .mt9 {
 	margin-top : 9px;
 }
@@ -228,7 +231,7 @@ input[readonly] {
 }
 .f_robotoBold {
     font-family: roboto;
-    font-weight : 800;
+    font-weight : 800 !important;
 }
 .f_semiBold {
 	font-weight : 500;
@@ -466,7 +469,8 @@ ul.pagingGroup li a {
 	width : 100%;
 	height : 17px;
 	font-size : 16px;
-	display : block;
+    display : block;
+    font-family : roboto;
 }
 .pagingPrev {
 	display : block;

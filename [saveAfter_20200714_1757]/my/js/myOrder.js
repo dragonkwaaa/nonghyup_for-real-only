@@ -109,7 +109,7 @@ function get_order(type){
 						str 					+=	'				</div>';
 					}
 					str			+=	'			</div>';
-					str			+=	'			<div class="absoluteMR f_bold f20">'+numberWithCommas(li.perAmount)+'원</div>';
+					str			+=	'			<div class="absoluteMR f_bold f20 f_robotoBold">'+numberWithCommas(li.perAmount)+'원</div>';
 					str			+=	'		</div>';
 					str			+=	'	</div>';
 					str			+=	'</li>';
@@ -136,7 +136,7 @@ function get_order(type){
 				str 		+=	'					<div>'+numberWithCommas(ro.re_amount)+'</div>';
 				str 		+=	'				</div>';
 				str			+=	'			</div>';
-				str			+=	'			<div class="absoluteMR f_bold f20">'+numberWithCommas(ro.re_amount)+'원</div>';
+				str			+=	'			<div class="absoluteMR f_bold f20 f_robotoBold">'+numberWithCommas(ro.re_amount)+'원</div>';
 				str			+=	'		</div>';
 				str			+=	'	</div>';
 				str			+=	'</li>';

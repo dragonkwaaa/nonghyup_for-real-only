@@ -440,11 +440,13 @@ ul.goodsList .goodsImg img {
 }
 
 .rightFloat .recentView .pageCount {
-	font-size : 14px;
+    font-size : 14px;
 }
-.rightFloat .recentView .pageCount span,
+.rightFloat .recentView .pageCount span {
+    vertical-align : middle;
+}
 .rightFloat .recentView .pageCount a {
-	vertical-align : middle;
+    vertical-align : middle;
 }
 .recentView .pageCount .arrowPrev {
 	margin-left : 14px;
@@ -754,7 +756,7 @@ ul.findPageTab {
 ul.findPageTab li {
 	display : inline-block;
 	width : 270px;
-	border-bottom : 1px solid #b3b3b3;
+	/* border-bottom : 1px solid #b3b3b3; */
 	font-size : 18px;
 	color : #b3b3b3;
 }
@@ -882,7 +884,8 @@ ul.findPageTab.deliveryTypeTab li a {
 	text-align : center;
 }
 ul.findPageTab.deliveryTypeTab li.activated {
-	border-bottom : 1px solid #fff;
+    /* border-bottom : 1px solid #fff; */
+    border-bottom : 2px solid #fff;
 }
 .section.cartSect .separatedRight.innerFloat {
 	border-top : none;
@@ -959,7 +962,8 @@ ul.regInfoList .infoRegTable.changeoptionGroup td {
 	border : 1px solid #b3b3b3;
 	vertical-align : top;
 	text-align : center;
-	font-size : 16px;
+    font-size : 16px;
+    font-family : roboto;
 }
 
 .emptyItemDisplay {
@@ -2558,7 +2562,8 @@ ul.menuTab.topMenuSort  li a.activated {
     display : inline-block;
 }
 .section.userRegSect .infoRegTable td input.short.addrSort {
-    width : calc(100% - 131px);
+    /* width : calc(100% - 131px); */
+    width : calc(100% - 132px);
 }
 .section.userRegSect .rimlessBtn.short.addrSort {
     margin : 0;

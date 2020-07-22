@@ -1,13 +1,13 @@
 
 $(document).ready(function(){
-	get_cart(2);
+	get_cart(1);
 });
 
 
 function get_cart(type){
+	$('input[name="isRegular"]').val(type);
 	let token 				=	$('input[name="token"]').val();
 	let isRegular 			=	$('input[name="isRegular"]').val();
-	$('input[name="isRegular"]').val(type);
 
 	let url					=	'/my/event/cart_get_cart';
 	let dataType			=	'json';
@@ -38,13 +38,14 @@ function get_cart(type){
 			totalCount 		=	regularTot;
 			$('#regularCart').addClass('activated');
 			$('#notRegularCart').removeClass('activated');
-			$('#buyButton').prop('href', "javascript:set_cart_fix()");
+		//	$('#buyButton').prop('href', "javascript:set_cart_fix()");
 		} else {
 			list 			=	notRegular;
 			totalCount 		=	notRegularTot;
 			$('#regularCart').removeClass('activated');
 			$('#notRegularCart').addClass('activated');
-			$('#buyButton').prop('href', "javascript:set_order()");
+			$('#buyButton').hide();
+			//$('#buyButton').prop('href', "javascript:set_order()");
 		}
 
 		if(userRegular != 1){
@@ -67,9 +68,9 @@ function get_cart(type){
 				}
 
 				let isFixStr 		=	'';
-				if(cart.isFix == 1){
+				/*if(cart.isFix == 1){
 					isFixStr 		=	' (구매확정)';
-				}
+				}*/
 			str			+=		'<li>';
             // str			+=		'	<div class="segmentHeadLine f12">'+goods.goodsName+' '+isFixStr+'</div>';
 
@@ -212,6 +213,7 @@ function update_cartQty(){
 		qty 					:	$('#tempQty').val()
 	}
 	postService(url, dataType, param, '', '');
+
 }
 
 
@@ -261,9 +263,12 @@ function delete_cart(cartCode){
 	let dataType 				=	'json';
 	let param 					=	{
 		cartCode				:	cartCode,
-		isRegular				:	$('input[name="isRegular"]').val(),
+		isRegular				:	$('input[name="isRegular"]').val()
 	}
-	postService(url, dataType, param, '', '');
+	postService(url, dataType, param, function(data) {
+		var isRegular 			=	$('input[name="isRegular"]').val();
+		get_cart(isRegular);
+	});
 }
 
 function delete_cartArr(){
@@ -358,7 +363,11 @@ function set_cart_fix(){
 		cartCode				:	cartCode
 	};
 
-	postService(url, dataType, param, '', '');
+	postService(url, dataType, param, function(data) {
+		alert('정기배송상품이 담겼습니다.');
+		var isRegular 			=	$('input[name="isRegular"]').val();
+		get_cart(isRegular);
+	});
 }
 /*
 
