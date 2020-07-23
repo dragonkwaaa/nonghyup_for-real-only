@@ -254,7 +254,7 @@ unset($_SESSION['isRegular']);
 
 </div>
 <script src="/order/js/orderReg.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://web.nicepay.co.kr/flex/js/nicepay_tr_utf.js" type="text/javascript"></script>
 <script>
 // :: 결제수단 선택 시, 해당 버튼에 노란색 테두리 표시되게 하는 스크립트. 
