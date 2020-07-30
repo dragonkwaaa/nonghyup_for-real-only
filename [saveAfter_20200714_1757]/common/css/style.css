@@ -353,6 +353,9 @@ li .segmentTop {
 	padding : 15px 20px;
 
 }
+li .segmentTop * {
+    vertical-align : middle;
+}
 
 li .segmentTop .deleteBtn {
 	top : 50%;
@@ -2733,3 +2736,65 @@ li.mobileViewGroup {
     z-index : 1;
 }
 /* :: ksg_20200721_2105 close  */
+
+/* :: ksg_20200723_1411 open */
+.deliLocaBtn {
+    float : right;
+    text-align : center;
+    background-color: #ffc20e;
+    color: #fff;
+}
+.displayerBox .addrSort {
+    width : 69px;
+    padding : 20px 0;
+}
+.popup.regCard .tbox.displayer.withBtnSort {
+    width : calc(100% - 132px);
+}
+.popup .regInfoList .btnGroup.deliAdrSort {
+    margin-top : 0;
+    text-align : center;
+    width : 100%;
+}
+.popup .regInfoList .btnGroup.deliAdrSort .regBtn {
+    width : 100%; 
+    padding : 10px 0;
+    font-size : 20px;
+}
+.popup.delAdrSort .popupTitleBox {
+    padding-bottom : 10px;
+}
+.titleBox.delAdrSort {
+    padding : 0 20px;
+    font-weight : 600;
+    font-size : 15px;
+}
+.adrListGroup {
+    padding : 20px;
+}
+.delAdrSort .certInfoBox.cardSort .btn.selSort {
+    right : 120px;
+    height : 41px;
+}
+.delAdrSort .certInfoBox.cardSort {
+    padding : 20px 215px 20px 20px;
+    margin-bottom : 10px;
+}
+.delAdrSort .certInfoBox.cardSort .textBox {
+    margin-top : 5px;
+}
+.popup.delAdrSort .regInfoList {
+    margin-bottom : 25px;
+}
+.popup .regInfoList .btnGroup.delAdrBotSort {
+    margin-top : 0;
+    text-align : center;
+}
+/* :: ksg_20200723_1411 close */
+
+/* :: ksg_20200730_1356 open  */
+.separatedRight.rightFloat.innerFloat #orderOpList_r {
+    overflow-y : scroll;
+    max-height : 500px;
+}
+/* :: ksg_20200730_1356 close  */
